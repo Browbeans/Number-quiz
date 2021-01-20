@@ -14,6 +14,8 @@ body {
 
 .instructions {
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
     justify-content: center;
     text-align: justify;
     color: white;
