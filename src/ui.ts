@@ -3,6 +3,7 @@ class Component {
 
     constructor() {
         this.element = document.createElement('div');
+        this.element.classList.add('col-md-12')
     }
 
     public getElement(): HTMLElement {
@@ -68,6 +69,7 @@ class InputField extends Component {
         this.element = document.createElement('INPUT');
         this.element.setAttribute('type', 'text');
         this.element.setAttribute('value', '');
+        this.element.setAttribute('autofocus', 'autofocus');
         this.element.classList.add('player-input');
 
     }

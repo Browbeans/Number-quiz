@@ -15,20 +15,20 @@ body {
 }
 
 .logo-right {
-    display: block;
     float: right;
     margin-top: 3rem;
+    margin-bottom: 10rem;
     width: 20%;
     height: auto;
 }
 
 .player-input {
     display: flex;
+    flex-direction: column;
     border: none;
     width: 20rem;
     height: 2rem;
-    margin-top: 30rem;
     margin-left: auto;
     margin-right: auto;
-    justify-content: space-around;
+    padding: 0.5rem;
 }
