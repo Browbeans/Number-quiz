@@ -57,7 +57,7 @@ class Middle extends Component {
     constructor() {
         super();
         this.element = document.createElement('p');
-        this.element.innerHTML = 'hejhej'
-        
+        this.element.innerHTML = 'hejhej';
+        this.element.className = 'instructions'; 
     }
 }

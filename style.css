@@ -11,3 +11,9 @@ body {
     margin-right: auto;
     margin-top: 3rem;
 }
+
+.instructions {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
