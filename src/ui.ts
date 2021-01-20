@@ -14,8 +14,9 @@ class Component {
 class UI extends Component {
     constructor() {
         super();
-        this.element.appendChild(new StartPage().getElement());
-
+        //this.element.appendChild(new StartPage().getElement());
+        this.element.appendChild(new GamePage().getElement());
+        
     }
 
     public updatePage(page: Component) {
@@ -28,6 +29,15 @@ class StartPage extends Component {
         super();
         this.element.appendChild(new Header('center').getElement());
         // All StartPage componants here...
+    }
+}
+
+class GamePage extends Component {
+
+    constructor() {
+        super();
+        this.element.appendChild(new Header('right').getElement());
+        this.element.appendChild(new InputField().getElement());
     }
 }
 
@@ -47,5 +57,18 @@ class Logo extends Component {
         super();
         this.element = new Image(250, 250);
         this.element.src = 'assets/logo.png';
+    }
+}
+
+class InputField extends Component {
+    protected element: HTMLInputElement | HTMLElement;
+
+    constructor() {
+        super();
+        this.element = document.createElement('INPUT');
+        this.element.setAttribute('type', 'text');
+        this.element.setAttribute('value', '');
+        this.element.classList.add('player-input');
+
     }
 }

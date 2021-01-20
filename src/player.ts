@@ -1,1 +1,4 @@
 //Player class
+class Player {
+    
+}

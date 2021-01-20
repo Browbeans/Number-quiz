@@ -3,6 +3,8 @@ body {
     max-width: 600px;
     margin: auto;
     background-color: #7ac684;
+    display: flex;
+    flex-direction: column;
 }
 
 .logo-center {
@@ -10,4 +12,23 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-top: 3rem;
+}
+
+.logo-right {
+    display: block;
+    float: right;
+    margin-top: 3rem;
+    width: 20%;
+    height: auto;
+}
+
+.player-input {
+    display: flex;
+    border: none;
+    width: 20rem;
+    height: 2rem;
+    margin-top: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-around;
 }
