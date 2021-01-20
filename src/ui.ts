@@ -28,7 +28,13 @@ class StartPage extends Component {
         super();
         this.element.appendChild(new Header('center').getElement());
         // All StartPage componants here...
+        this.element.appendChild(new Paragraph().getElement()); 
+        this.element.appendChild(new Input().getElement()); 
+        this.element.appendChild(new Button().getElement()); 
+        
     }
+
+
 }
 
 class Header extends Component {
@@ -49,3 +55,42 @@ class Logo extends Component {
         this.element.src = 'assets/logo.png';
     }
 }
+
+
+class Button extends Component {
+    protected element: HTMLButtonElement; 
+
+    constructor() {
+        super();
+        this.element = document.createElement('button'); 
+        this.element.classList.add('startButton')
+        this.element.innerText = 'start quiz';
+        this.element.onclick = function() {
+            console.log('start quiz')
+        }
+    }
+}
+
+
+class Input extends Component {
+    protected element: HTMLInputElement | HTMLElement; 
+
+    constructor() {
+        super(); 
+        this.element = document.createElement('input');
+        this.element.setAttribute('type', 'text')
+        this.element.classList.add('inputName'); 
+    }
+}
+class Paragraph extends Component {
+    protected element: HTMLParagraphElement; 
+
+    constructor() {
+        super(); 
+        this.element = document.createElement('p'); 
+        this.element.classList.add('para')
+        this.element.innerText = 'Enter your name:'; 
+    }
+}
+
+
