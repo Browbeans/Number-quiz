@@ -9,8 +9,7 @@ class GameLeader {
     }
 
     getNumber() {
-        //var userInput = prompt('Type in a number between 1 - 20')
-        //this.handleInput(userInput)
+        let inputSubmit = document.getElementById('submit')
     }
 
     generateRandomNumber() {
