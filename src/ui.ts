@@ -87,8 +87,6 @@ class NumberQuestion extends Component {
         this.element.innerHTML = 'Pick a number between 1 and 20';
     }
 }
-
-
 class NumberInput extends Component {
     protected element: HTMLElement
 
@@ -98,15 +96,14 @@ class NumberInput extends Component {
         this.element.setAttribute('type', 'number')
         this.element.setAttribute('value', '');
         this.element.setAttribute('autofocus', 'autofocus');
-        this.element.addEventListener('input', this.updateValue)
-    }
-
-    updateValue() {
-        this.element.getAttribute('value')
+        //this.element.addEventListener('input', this.updateValue)
     }
 }
 
-
+function updateValue() {
+    const value = document.querySelector('input')?.value;
+    console.log(value);
+}
 class SubmitInput extends Component {
     protected element: HTMLElement
 
@@ -115,14 +112,8 @@ class SubmitInput extends Component {
         this.element = document.createElement('BUTTON')
         this.element.setAttribute('type', 'submit')
         this.element.setAttribute('value', 'Submit');
-        this.element.innerText = 'submit'
-        //this.element.setAttribute('autofocus', 'autofocus');
-        this.element.onclick = function() {
-            console.log('dsad')
-        }
+        this.element.innerText = 'Submit'
+        this.element.addEventListener('click', updateValue)
     }
 }
-
-
-
 
