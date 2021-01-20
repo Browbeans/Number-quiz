@@ -3,7 +3,6 @@ class Component {
 
     constructor() {
         this.element = document.createElement('div');
-        this.element.classList.add('col-md-12')
     }
 
     public getElement(): HTMLElement {
@@ -62,15 +61,15 @@ class Logo extends Component {
 }
 
 class InputField extends Component {
-    protected element: HTMLInputElement | HTMLElement;
 
     constructor() {
         super();
-        this.element = document.createElement('INPUT');
-        this.element.setAttribute('type', 'text');
-        this.element.setAttribute('value', '');
-        this.element.setAttribute('autofocus', 'autofocus');
-        this.element.classList.add('player-input');
-
+        const input = document.createElement('INPUT');
+        input.setAttribute('type', 'text');
+        input.setAttribute('value', '');
+        input.setAttribute('autofocus', 'autofocus');
+        input.classList.add('player-input');
+        input.classList.add('translate-middle');
+        this.element.appendChild(input)
     }
 }

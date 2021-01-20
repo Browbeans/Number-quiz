@@ -23,12 +23,11 @@ body {
 }
 
 .player-input {
-    display: flex;
-    flex-direction: column;
     border: none;
     width: 20rem;
     height: 2rem;
     margin-left: auto;
     margin-right: auto;
     padding: 0.5rem;
+    margin-top: 30rem;
 }
