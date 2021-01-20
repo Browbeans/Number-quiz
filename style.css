@@ -11,3 +11,12 @@ body {
     margin-right: auto;
     margin-top: 3rem;
 }
+
+.input-bot {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
