@@ -100,9 +100,11 @@ class NumberInput extends Component {
     }
 }
 
+
 function updateValue() {
-    const value = document.querySelector('input')?.value;
+    let value = document.querySelector('input')?.value;
     console.log(value);
+    handleInput(value)
 }
 class SubmitInput extends Component {
     protected element: HTMLElement
