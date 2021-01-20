@@ -26,6 +26,7 @@ class UI extends Component {
 class StartPage extends Component {
     constructor() {
         super();
+        this.element.appendChild(new Middle().getElement());
         this.element.appendChild(new Header('center').getElement());
         // All StartPage componants here...
     }
@@ -47,5 +48,16 @@ class Logo extends Component {
         super();
         this.element = new Image(250, 250);
         this.element.src = 'assets/logo.png';
+    }
+}
+
+class Middle extends Component {
+    protected element: HTMLElement;
+    
+    constructor() {
+        super();
+        this.element = document.createElement('p');
+        this.element.innerHTML = 'hejhej'
+        
     }
 }
