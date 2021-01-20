@@ -26,8 +26,11 @@ class UI extends Component {
 class StartPage extends Component {
     constructor() {
         super();
-        this.element.appendChild(new Middle().getElement());
         this.element.appendChild(new Header('center').getElement());
+        this.element.appendChild(new IntroductionHeadline().getElement());
+        this.element.appendChild(new IntroductionText().getElement());
+        this.element.appendChild(new InstructionHeadline().getElement());
+        this.element.appendChild(new InstructionText().getElement());
         // All StartPage componants here...
     }
 }
@@ -51,13 +54,56 @@ class Logo extends Component {
     }
 }
 
-class Middle extends Component {
+class IntroductionHeadline extends Component {
+    protected element: HTMLParagraphElement;
+    
+    constructor() {
+        super();
+        this.element = document.createElement('h1');
+        this.element.classList.add('instructions'); 
+        this.element.innerHTML = 'Instructions';
+    }
+}
+
+class IntroductionText extends Component {
+    protected element: HTMLElement;
+    
+    constructor() {
+        const line1 = 'Hi and welcome to Crack The Number!';
+        const line2 = 'To play the game you will need to log in and write your name. ';
+        const line3 = 'You will now face your competitors: Drunk Denise and Smart Steve. ';
+        const line4 = 'Denise has been hitting the bottle hard in lockdown while Smart Steve has been playing ';
+        const line5 = 'chess and reading a lot.';
+        super();
+        this.element = document.createElement('p');
+        this.element.classList.add('instructions');
+        this.element.innerHTML =  line1 + ' ' + line2 + ' ' + line3 + ' ' + line4 + ' ' + line5;
+
+    }
+}
+
+class InstructionHeadline extends Component {
     protected element: HTMLElement;
     
     constructor() {
         super();
+        this.element = document.createElement('h4');
+        this.element.classList.add('instructions');
+        this.element.innerHTML = 'So, how to play?';
+
+    }
+}
+
+class InstructionText extends Component {
+    protected element: HTMLParagraphElement;
+
+    constructor() {
+        const line1 = 'The game leader asks you to guess a number between 1 and 20. You have got 5 seconds to ';
+        const line2 = 'write it down in the text box. You will then get a ‘higher’ or ‘lower’ answer. Drunk Denise and ';
+        const line3 = 'Smart Steve will also guess. The first person that guesses the correct number wins! ';
+        super();
         this.element = document.createElement('p');
-        this.element.innerHTML = 'hejhej';
-        this.element.className = 'instructions'; 
+        this.element.classList.add('instructions');
+        this.element.innerHTML =  line1 + ' ' + line2 + ' ' + line3;
     }
 }
