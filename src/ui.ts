@@ -56,6 +56,10 @@ class Logo extends Component {
     }
 }
 
+function updateInputValue() {
+    const value = document.querySelector('input')?.value; 
+    console.log(value)
+}
 
 class Button extends Component {
     protected element: HTMLButtonElement; 
@@ -65,9 +69,8 @@ class Button extends Component {
         this.element = document.createElement('button'); 
         this.element.classList.add('startButton')
         this.element.innerText = 'start quiz';
-        this.element.onclick = function() {
-            console.log('start quiz')
-        }
+        this.element.addEventListener('click', updateInputValue) 
+           
     }
 }
 
