@@ -1,0 +1,13 @@
+/* Custom CSS goes here */
+body {
+    max-width: 600px;
+    margin: auto;
+    background-color: #7ac684;
+}
+
+.logo-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+}
