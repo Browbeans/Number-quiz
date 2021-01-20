@@ -9,8 +9,7 @@ class GameLeader {
     }
 
     getNumber() {
-        var userInput = prompt('Type in a number between 1 - 20')
-        this.handleInput(userInput)
+        let inputSubmit = document.getElementById('submit')
     }
 
     generateRandomNumber() {
@@ -20,9 +19,12 @@ class GameLeader {
 
     handleInput(userInput: number | string) {
         if(userInput < this.randomNumber){
-            alert('The number im thinking of is higher')
-        } else {
-            alert('The number im thinking of is lower')
+    
+        } else if(userInput == this.randomNumber){
+       
+        }
+        else {
+            
         }
     }
 }
