@@ -45,6 +45,7 @@ class PlayPage extends Component {
         super(); 
         this.element.appendChild(new Header('center').getElement());
         this.element.appendChild(new Middle('bot').getElement());
+        this.element.appendChild(new Footer().getElement());
     }
 }
 
@@ -225,13 +226,44 @@ class SubmitInput extends Component {
     }
 }
 
+class Footer extends Component {
+    protected element: HTMLElement;
+    
+    constructor() {
+        super(); 
+        this.element = document.createElement('div');
+        const playingNowText = new PlayingNowText().getElement();
+        const userIcon = new PlayerIcons().getElement();
+        this.element.appendChild(playingNowText);
+        this.element.appendChild(userIcon);
+    }
+}
 
-class PlayerIcons extends Component {
-    protected element: HTMLImageElement;
+class PlayingNowText extends Component {
+    protected element: HTMLElement;
 
     constructor() {
         super();
-        this.element = new Image(200, 200);
-        this.element.src = 'assets/user-bg.png';
+        this.element = document.createElement('p');
+        this.element.classList.add('p-playing-now')
+        this.element.innerText = 'Playing Now:';
+    }
+}
+
+class PlayerIcons extends Component {
+    protected element: HTMLElement;
+    //protected iconsArray: HTMLImageElement[];
+
+    constructor() {
+        super();
+        this.element = document.createElement('div');
+        this.element.classList.add('avatars');
+        const avatars = ['user-bg.png', 'dumbot.png', 'smartbot.png']
+
+        for (const avatar of avatars) {
+            let image = new Image(80, 70);
+            image.src = 'assets/' + avatar;
+            this.element.appendChild(image);
+        }
     }
 }
