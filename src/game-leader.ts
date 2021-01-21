@@ -1,10 +1,7 @@
 // Game leader class
 class GameLeader {
-    private randomNumber: number
     
     constructor () {
-        this.randomNumber = 0
-        this.generateRandomNumber();
         this.getNumber();
     }
 
@@ -12,20 +9,20 @@ class GameLeader {
         let inputSubmit = document.getElementById('submit')
     }
 
-    generateRandomNumber() {
-        this.randomNumber = Math.floor(Math.random() * 20) + 1
-        console.log(this.randomNumber); 
-    }
+}
 
-    handleInput(userInput: number | string) {
-        if(userInput < this.randomNumber){
+function handleInput(value: any) {
     
-        } else if(userInput == this.randomNumber){
-       
-        }
-        else {
-            
-        }
+    console.log('randomNumber:')
+    console.log(randomNumber)
+
+    if(value < randomNumber){
+        console.log('Less then my number')
+    } else if(value == randomNumber){
+        console.log('correct')
+    }
+    else {
+        console.log('higher then my number')
     }
 }
 
