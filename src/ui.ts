@@ -63,7 +63,7 @@ class Logo extends Component {
 
     constructor() {
         super();
-        this.element = new Image(250, 250);
+        this.element = new Image(200, 200);
         this.element.src = 'assets/logo.png';
 
     }
@@ -203,7 +203,6 @@ class NumberInput extends Component {
         this.element.setAttribute('type', 'number')
         this.element.setAttribute('value', '');
         this.element.setAttribute('autofocus', 'autofocus');
-        //this.element.addEventListener('input', this.updateValue)
     }
 }
 
