@@ -14,7 +14,7 @@ class Component {
 class UI extends Component {
     constructor() {
         super();
-        this.element.appendChild(new StartPage().getElement());
+        //this.element.appendChild(new StartPage().getElement());
         this.element.appendChild(new PlayPage().getElement());
     }
 
@@ -38,13 +38,12 @@ class StartPage extends Component {
         this.element.appendChild(new Button().getElement()); 
         
     }
-
-
 }
 
 class PlayPage extends Component {
     constructor () {
         super(); 
+        this.element.appendChild(new Header('center').getElement());
         this.element.appendChild(new Middle('bot').getElement());
     }
 }
@@ -227,3 +226,12 @@ class SubmitInput extends Component {
 }
 
 
+class PlayerIcons extends Component {
+    protected element: HTMLImageElement;
+
+    constructor() {
+        super();
+        this.element = new Image(200, 200);
+        this.element.src = 'assets/user-bg.png';
+    }
+}
