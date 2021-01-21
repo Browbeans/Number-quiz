@@ -89,8 +89,8 @@ class Middle extends Component {
 }
 
 function updateInputValue() {
-    const value = document.querySelector('input')?.value; 
-    console.log(value)
+    const nameValue = document.querySelector('input')?.value;
+    window.localStorage.setItem('nameValue', JSON.stringify(nameValue));
 }
 
 class Button extends Component {
@@ -116,6 +116,7 @@ class Input extends Component {
         this.element.setAttribute('type', 'text')
         this.element.classList.add('inputName'); 
     }
+    
 }
 class Paragraph extends Component {
     protected element: HTMLParagraphElement; 
