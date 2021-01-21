@@ -14,8 +14,9 @@ class Component {
 class UI extends Component {
     constructor() {
         super();
+        this.element.appendChild(appState.currentPage.getElement());
         //this.element.appendChild(new StartPage().getElement());
-        this.element.appendChild(new PlayPage().getElement());
+        //this.element.appendChild(new PlayPage().getElement());
     }
 
     public updatePage(page: Component) {
@@ -88,11 +89,6 @@ class Middle extends Component {
     }
 }
 
-function updateInputValue() {
-    const value = document.querySelector('input')?.value; 
-    console.log(value)
-}
-
 class Button extends Component {
     protected element: HTMLButtonElement; 
 
@@ -101,7 +97,11 @@ class Button extends Component {
         this.element = document.createElement('button'); 
         this.element.classList.add('startButton')
         this.element.innerText = 'start quiz';
-        this.element.addEventListener('click', updateInputValue) 
+        this.element.addEventListener('click', () => {
+            appState.playerName = document.querySelector('input')?.value; 
+            appState.nextPage(new PlayPage());
+            game.updateUI();
+        });
            
     }
 }
@@ -243,16 +243,16 @@ class Footer extends Component {
 }
 
 class PlayerIcons extends Component {
-    protected element: HTMLElement;
-
     constructor() {
         super();
-        this.element = document.createElement('div');
         this.element.classList.add('avatars');
         const avatars = ['user-bg.png', 'dumbot.png', 'smartbot.png'];
+        const span = document.createElement('span');
+        span.innerText = appState.playerName;
+        this.element.appendChild(span);
 
         for (const avatar of avatars) {
-            let image = new Image(80, 70);
+            let image = new Image(80, 100);
             image.src = 'assets/' + avatar;
             this.element.appendChild(image);
         }

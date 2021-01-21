@@ -73,3 +73,10 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.avatar-names {
+    margin: 0 auto 3rem;
+    display: flex;
+    justify-content: center;
+    font-size: 0.8rem;
+}
