@@ -12,15 +12,26 @@ class Component {
 
 
 class UI extends Component {
-    constructor() {
+    constructor(gameState: GameState) {
         super();
-        this.element.appendChild(new StartPage().getElement());
-        this.element.appendChild(new PlayPage().getElement());
+        this.appendChild(gameState)
+        
     }
 
     public updatePage(page: Component) {
         this.element.appendChild(page.getElement());
         this.element.appendChild(page.getElement());
+    }
+    
+    public appendChild(gameState: GameState) {
+        if(gameState === 'Start'){
+            this.element.appendChild(new StartPage().getElement());
+            console.log('dsad')
+        }
+        
+        if(gameState === 'Running'){
+            this.element.appendChild(new PlayPage().getElement());
+        }
     }
 }
 

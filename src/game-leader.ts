@@ -20,6 +20,7 @@ function handleInput(value: any) {
         console.log('Less then my number')
     } else if(value == randomNumber){
         console.log('correct')
+        
     }
     else {
         console.log('higher then my number')
