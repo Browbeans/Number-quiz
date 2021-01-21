@@ -222,6 +222,7 @@ class SubmitInput extends Component {
         this.element.setAttribute('type', 'submit')
         this.element.setAttribute('value', 'Submit');
         this.element.innerText = 'Submit'
+        this.element.classList.add('startButton');
         this.element.addEventListener('click', updateValue)
     }
 }
@@ -232,33 +233,24 @@ class Footer extends Component {
     constructor() {
         super(); 
         this.element = document.createElement('div');
-        const playingNowText = new PlayingNowText().getElement();
         const userIcon = new PlayerIcons().getElement();
-        this.element.appendChild(playingNowText);
+
+        const playNow = document.createElement('p');
+        playNow.classList.add('p-playing-now')
+        playNow.innerText = 'Playing Now:';
+        this.element.appendChild(playNow);
         this.element.appendChild(userIcon);
-    }
-}
-
-class PlayingNowText extends Component {
-    protected element: HTMLElement;
-
-    constructor() {
-        super();
-        this.element = document.createElement('p');
-        this.element.classList.add('p-playing-now')
-        this.element.innerText = 'Playing Now:';
     }
 }
 
 class PlayerIcons extends Component {
     protected element: HTMLElement;
-    //protected iconsArray: HTMLImageElement[];
 
     constructor() {
         super();
         this.element = document.createElement('div');
         this.element.classList.add('avatars');
-        const avatars = ['user-bg.png', 'dumbot.png', 'smartbot.png']
+        const avatars = ['user-bg.png', 'dumbot.png', 'smartbot.png'];
 
         for (const avatar of avatars) {
             let image = new Image(80, 70);
