@@ -14,8 +14,9 @@ class Component {
 class UI extends Component {
     constructor() {
         super();
-        this.element.appendChild(new StartPage().getElement());
-        this.element.appendChild(new PlayPage().getElement());
+        this.element.appendChild(appState.currentPage.getElement());
+        //this.element.appendChild(new StartPage().getElement());
+        //this.element.appendChild(new PlayPage().getElement());
     }
 
     public updatePage(page: Component) {
@@ -38,14 +39,14 @@ class StartPage extends Component {
         this.element.appendChild(new Button().getElement()); 
         
     }
-
-
 }
 
 class PlayPage extends Component {
     constructor () {
         super(); 
+        this.element.appendChild(new Header('center').getElement());
         this.element.appendChild(new Middle('bot').getElement());
+        this.element.appendChild(new Footer().getElement());
     }
 }
 
@@ -63,7 +64,7 @@ class Logo extends Component {
 
     constructor() {
         super();
-        this.element = new Image(250, 250);
+        this.element = new Image(200, 200);
         this.element.src = 'assets/logo.png';
 
     }
@@ -88,11 +89,6 @@ class Middle extends Component {
     }
 }
 
-function updateInputValue() {
-    const value = document.querySelector('input')?.value; 
-    console.log(value)
-}
-
 class Button extends Component {
     protected element: HTMLButtonElement; 
 
@@ -101,8 +97,12 @@ class Button extends Component {
         this.element = document.createElement('button'); 
         this.element.classList.add('startButton')
         this.element.innerText = 'start quiz';
-        this.element.addEventListener('click', updateInputValue) 
-           
+        this.element.addEventListener('click', () => {
+            appState.playerName = document.querySelector('input')?.value; 
+            appState.nextPage(new PlayPage());
+            game.updateUI();
+            window.localStorage.setItem('playerName', JSON.stringify(appState.playerName));
+        });           
     }
 }
 
@@ -203,7 +203,6 @@ class NumberInput extends Component {
         this.element.setAttribute('type', 'number')
         this.element.setAttribute('value', '');
         this.element.setAttribute('autofocus', 'autofocus');
-        //this.element.addEventListener('input', this.updateValue)
     }
 }
 
@@ -222,8 +221,40 @@ class SubmitInput extends Component {
         this.element.setAttribute('type', 'submit')
         this.element.setAttribute('value', 'Submit');
         this.element.innerText = 'Submit'
+        this.element.classList.add('startButton');
         this.element.addEventListener('click', updateValue)
     }
 }
 
+class Footer extends Component {
+    protected element: HTMLElement;
+    
+    constructor() {
+        super(); 
+        this.element = document.createElement('div');
+        const userIcon = new PlayerIcons().getElement();
 
+        const playNow = document.createElement('p');
+        playNow.classList.add('p-playing-now')
+        playNow.innerText = 'Playing Now:';
+        this.element.appendChild(playNow);
+        this.element.appendChild(userIcon);
+    }
+}
+
+class PlayerIcons extends Component {
+    constructor() {
+        super();
+        this.element.classList.add('avatars');
+        const avatars = ['user-bg.png', 'dumbot.png', 'smartbot.png'];
+        const span = document.createElement('span');
+        span.innerText = appState.playerName;
+        this.element.appendChild(span);
+
+        for (const avatar of avatars) {
+            let image = new Image(80, 100);
+            image.src = 'assets/' + avatar;
+            this.element.appendChild(image);
+        }
+    }
+}
