@@ -22,8 +22,9 @@ class UI extends Component {
         this.element.appendChild(page.getElement());
         this.element.appendChild(page.getElement());
     }
-    
+
     public appendChild(gameState: GameState) {
+        
         if(gameState === 'Start'){
             this.element.appendChild(new StartPage().getElement());
             console.log('dsad')
@@ -31,7 +32,28 @@ class UI extends Component {
         
         if(gameState === 'Running'){
             this.element.appendChild(new PlayPage().getElement());
-        }
+            console.log('dsa')
+            //let button = document.getElementsByClassName('startButton'); 
+        //     for(let i = 0; i < button.length; i++) {
+        //         button[i].remove()
+        //     }
+        //     let logo = document.getElementsByClassName('logo-center'); 
+        //     for(let i = 0; i < logo.length; i++) {
+        //         logo[i].remove()
+        //     }
+        //     let attan = document.getElementsByClassName('instructions'); 
+        //     for(let i = 0; i < attan.length; i++) {
+        //         attan[i].parentNode?.removeChild(attan[i])
+        //     }
+        //     let para = document.getElementsByClassName('para'); 
+        //     for(let i = 0; i < para.length; i++) {
+        //         para[i].remove()
+        //     }
+        //     let inputName = document.getElementsByClassName('inputName'); 
+        //     for(let i = 0; i < inputName.length; i++) {
+        //         inputName[i].remove()
+        //     }
+         }
     }
 }
 
@@ -47,7 +69,6 @@ class StartPage extends Component {
         this.element.appendChild(new Paragraph().getElement()); 
         this.element.appendChild(new Input().getElement()); 
         this.element.appendChild(new Button().getElement()); 
-        
     }
 
 

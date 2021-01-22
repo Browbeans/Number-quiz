@@ -16,6 +16,8 @@ class Game {
         setTimeout(function(){ 
             gameState = 'Running';
             ui.appendChild(gameState);
+            let appDiv = document.getElementById('app')
+            appDiv?.innerText = '' 
         }, 3000);
     }
 }
