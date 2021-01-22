@@ -101,8 +101,8 @@ class Button extends Component {
             appState.playerName = document.querySelector('input')?.value; 
             appState.nextPage(new PlayPage());
             game.updateUI();
-        });
-           
+            window.localStorage.setItem('playerName', JSON.stringify(appState.playerName));
+        });           
     }
 }
 
