@@ -12,17 +12,21 @@ function init() {
 //All data som uppdateras i spelet kan hållas i denna.
 class AppState {
     public players: Player[];
+    public currentPlayerIndex: number;
     public currentPage: Component;
-    public playerName: string;
+    public playerGuessedName: string;
     public numberGuessed: number;
     public correctNumber: number;
+    public win: boolean;
 
     constructor() {
         this.players = [];
+        this.currentPlayerIndex = 0;
         this.currentPage = new StartPage();
-        this.playerName = '';
+        this.playerGuessedName = '';
         this.numberGuessed = 0;
         this.correctNumber = 0;
+        this.win = false;
     }
 
     public nextPage(page: Component) {
@@ -31,5 +35,28 @@ class AppState {
 
     public addPlayer(player: Player) {
         this.players.push(player);
+    }
+
+    public isHumanPlayer(): boolean {
+        return this.players[this.currentPlayerIndex] instanceof HumanPlayer;
+    }
+
+    public getCurrentPlayer(): Player {
+        return this.players[this.currentPlayerIndex];
+    }
+
+    public getLastPlayer(): Player {
+        const index = this.currentPlayerIndex ? this.currentPlayerIndex - 1 : this.players.length - 1;
+        return this.players[index];
+    }
+
+    public nextPlayer(): Player {
+        appState.currentPlayerIndex = (appState.currentPlayerIndex + 1) % appState.players.length;
+        return this.getCurrentPlayer();
+    }
+
+    public makeGuess(value: number) {
+        this.numberGuessed = value;
+        this.playerGuessedName = this.getCurrentPlayer().name;
     }
 }

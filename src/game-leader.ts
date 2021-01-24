@@ -1,13 +1,7 @@
 // Game leader class
 class GameLeader {
-
-
     constructor () {
-        this.getNumber();
-    }
 
-    getNumber() {
-        let inputSubmit = document.getElementById('submit')
     }
 
     startGame() {
@@ -16,18 +10,45 @@ class GameLeader {
 
     public handleUserGuess(value: number) {
         console.log(value);
-        appState.numberGuessed = value;
+        appState.makeGuess(value);
 
-        if (value < appState.correctNumber){
-            console.log('Less then my number')
-        } else if (value == appState.correctNumber){
-            console.log('correct')
+        
+       
+        this.nextPlayer();
+    }
+
+    private async nextPlayer() {
+
+        if (appState.numberGuessed === appState.correctNumber) {
+            appState.nextPage(new EndPage());
+            game.updateUI();
+            return;
         }
-        else {
-            console.log('higher then my number')
+
+        const nextPlayer = appState.nextPlayer();
+
+        appState.nextPage(new PlayPage());
+        game.updateUI();
+        
+        if (appState.getLastPlayer().isHuman()) {
+            await sleep(3000);
+        }
+
+        if (!nextPlayer.isHuman()) {
+            const botPlayer = nextPlayer;
+            appState.makeGuess(botPlayer.makeGuess());
+            appState.nextPage(new PlayPage());
+            game.updateUI();
+            await sleep(3000);
+            this.nextPlayer();
         }
     }
+    
 }
+
+function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
 // function handleInput(value: any) {
     

@@ -45,8 +45,23 @@ class PlayPage extends Component {
     constructor () {
         super(); 
         this.element.appendChild(new Header('center').getElement());
-        this.element.appendChild(new MiddleUser('bot').getElement());
+        if (appState.isHumanPlayer()) {
+            this.element.appendChild(new MiddleUser('bot').getElement());
+        } else {
+            this.element.appendChild(new MiddleBot().getElement());
+        }
         this.element.appendChild(new Footer().getElement());
+    }
+}
+
+class EndPage extends Component {
+    constructor() {
+        super();
+        this.element.appendChild(new Header('center').getElement());
+        const winnerText = document.createElement('h2');
+        winnerText.innerText = 'The winner is: ' + appState.playerGuessedName;
+        this.element.appendChild(winnerText);
+
     }
 }
 
@@ -89,7 +104,24 @@ class MiddleUser extends Component {
     }
 }
 
+class MiddleBot extends Component {
+    constructor() {
+        super();
+        const nameEl = document.createElement('span');
+        nameEl.innerText = appState.playerGuessedName + ' ';
 
+        const numberGuessedEl = document.createElement('span');
+        numberGuessedEl.innerText = appState.numberGuessed + ' ';
+
+        const higherLowerAnswerEl = document.createElement('span');
+        const text = appState.numberGuessed < appState.correctNumber ? 'Higher' : 'Lower';
+        higherLowerAnswerEl.innerText = text;
+
+        this.element.appendChild(nameEl);
+        this.element.appendChild(numberGuessedEl);
+        this.element.appendChild(higherLowerAnswerEl);
+    }
+}
 
 class Button extends Component {
     protected element: HTMLButtonElement; 
@@ -208,12 +240,6 @@ class NumberInput extends Component {
     }
 }
 
-
-// function updateValue() {
-//     let value = document.querySelector('input')?.value;
-//     console.log(value);
-//     handleInput(value)
-//}
 class SubmitInput extends Component {
     protected element: HTMLElement
 
@@ -226,7 +252,7 @@ class SubmitInput extends Component {
         this.element.classList.add('startButton');
         this.element.addEventListener('click', () => {
             let value = document.querySelector('input')?.value;
-            game.handleUserGuess(value);
+            game.handleUserGuess(Number(value));
         })
     }
 }
