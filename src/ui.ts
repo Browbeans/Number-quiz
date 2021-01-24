@@ -45,7 +45,7 @@ class PlayPage extends Component {
     constructor () {
         super(); 
         this.element.appendChild(new Header('center').getElement());
-        this.element.appendChild(new Middle('bot').getElement());
+        this.element.appendChild(new MiddleUser('bot').getElement());
         this.element.appendChild(new Footer().getElement());
     }
 }
@@ -70,7 +70,7 @@ class Logo extends Component {
     }
 }
 
-class Middle extends Component {
+class MiddleUser extends Component {
     
     constructor(position: string) {
         super(); 
@@ -88,6 +88,8 @@ class Middle extends Component {
 
     }
 }
+
+
 
 class Button extends Component {
     protected element: HTMLButtonElement; 
@@ -207,11 +209,11 @@ class NumberInput extends Component {
 }
 
 
-function updateValue() {
-    let value = document.querySelector('input')?.value;
-    console.log(value);
-    handleInput(value)
-}
+// function updateValue() {
+//     let value = document.querySelector('input')?.value;
+//     console.log(value);
+//     handleInput(value)
+//}
 class SubmitInput extends Component {
     protected element: HTMLElement
 
@@ -222,7 +224,10 @@ class SubmitInput extends Component {
         this.element.setAttribute('value', 'Submit');
         this.element.innerText = 'Submit'
         this.element.classList.add('startButton');
-        this.element.addEventListener('click', updateValue)
+        this.element.addEventListener('click', () => {
+            let value = document.querySelector('input')?.value;
+            game.handleUserGuess(value);
+        })
     }
 }
 

@@ -1,6 +1,5 @@
 // Global variables
 let game: any;
-let randomNumber = Math.floor(Math.random() * 20) + 1;
 let appState: any;
 
 window.addEventListener('load', init);
@@ -15,11 +14,15 @@ class AppState {
     public players: Player[];
     public currentPage: Component;
     public playerName: string;
+    public numberGuessed: number;
+    public correctNumber: number;
 
     constructor() {
         this.players = [];
         this.currentPage = new StartPage();
         this.playerName = '';
+        this.numberGuessed = 0;
+        this.correctNumber = 0;
     }
 
     public nextPage(page: Component) {

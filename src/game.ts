@@ -7,6 +7,7 @@ class Game {
         this.ui = new UI();
         this.gameLeader = new GameLeader();
         document.getElementById("app")?.appendChild(this.ui.getElement());
+        this.startGame();
     }
 
     public updateUI() {
@@ -17,5 +18,13 @@ class Game {
             appDiv.innerHTML = '';
             appDiv.appendChild(this.ui.getElement());
         }
+    }
+
+    private startGame() {
+        this.gameLeader.startGame();
+    }
+
+    public handleUserGuess(value: number) {
+        this.gameLeader.handleUserGuess(value);
     }
 }
