@@ -80,3 +80,11 @@ body {
     justify-content: center;
     font-size: 0.8rem;
 }
+
+.timer-paragraph {
+    color: white;
+    font-size: 4rem;
+    margin-left: 3rem;
+    margin-top: 3rem;
+    
+}
