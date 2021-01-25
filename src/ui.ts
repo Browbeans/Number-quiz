@@ -15,8 +15,6 @@ class UI extends Component {
     constructor() {
         super();
         this.element.appendChild(appState.currentPage.getElement());
-        //this.element.appendChild(new StartPage().getElement());
-        //this.element.appendChild(new PlayPage().getElement());
     }
 
     public updatePage(page: Component) {
@@ -33,7 +31,6 @@ class StartPage extends Component {
         this.element.appendChild(new IntroductionText().getElement());
         this.element.appendChild(new InstructionHeadline().getElement());
         this.element.appendChild(new InstructionText().getElement());
-        // All StartPage componants here...
         this.element.appendChild(new Paragraph().getElement()); 
         this.element.appendChild(new Input().getElement()); 
         this.element.appendChild(new Button().getElement()); 
@@ -45,8 +42,23 @@ class PlayPage extends Component {
     constructor () {
         super(); 
         this.element.appendChild(new Header('center').getElement());
-        this.element.appendChild(new Middle('bot').getElement());
+        if (appState.isHumanPlayer()) {
+            this.element.appendChild(new MiddleUser('bot').getElement());
+        } else {
+            this.element.appendChild(new MiddleBot().getElement());
+        }
         this.element.appendChild(new Footer().getElement());
+    }
+}
+
+class EndPage extends Component {
+    constructor() {
+        super();
+        this.element.appendChild(new Header('center').getElement());
+        const winnerText = document.createElement('h2');
+        winnerText.innerText = 'The winner is: ' + appState.playerGuessedName;
+        this.element.appendChild(winnerText);
+
     }
 }
 
@@ -70,7 +82,7 @@ class Logo extends Component {
     }
 }
 
-class Middle extends Component {
+class MiddleUser extends Component {
     
     constructor(position: string) {
         super(); 
@@ -86,6 +98,25 @@ class Middle extends Component {
         submitInput.classList.add('input-' + position);
         this.element.appendChild(submitInput);
 
+    }
+}
+
+class MiddleBot extends Component {
+    constructor() {
+        super();
+        const nameEl = document.createElement('span');
+        nameEl.innerText = appState.playerGuessedName + ' ';
+
+        const numberGuessedEl = document.createElement('span');
+        numberGuessedEl.innerText = appState.numberGuessed + ' ';
+
+        const higherLowerAnswerEl = document.createElement('span');
+        const text = appState.numberGuessed < appState.correctNumber ? 'Higher' : 'Lower';
+        higherLowerAnswerEl.innerText = text;
+
+        this.element.appendChild(nameEl);
+        this.element.appendChild(numberGuessedEl);
+        this.element.appendChild(higherLowerAnswerEl);
     }
 }
 
@@ -206,12 +237,6 @@ class NumberInput extends Component {
     }
 }
 
-
-function updateValue() {
-    let value = document.querySelector('input')?.value;
-    console.log(value);
-    handleInput(value)
-}
 class SubmitInput extends Component {
     protected element: HTMLElement
 
@@ -222,7 +247,10 @@ class SubmitInput extends Component {
         this.element.setAttribute('value', 'Submit');
         this.element.innerText = 'Submit'
         this.element.classList.add('startButton');
-        this.element.addEventListener('click', updateValue)
+        this.element.addEventListener('click', () => {
+            let value = document.querySelector('input')?.value;
+            game.handleUserGuess(Number(value));
+        })
     }
 }
 

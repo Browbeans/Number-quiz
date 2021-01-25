@@ -1,12 +1,24 @@
 //Player class
 
 class Player {
-    private name: string;
-    private avatarPath: string;
+    public name: string;
 
-    constructor(name: string, avatarPath: string) {
+    constructor(name: string) {
         this.name = name;
-        this.avatarPath = avatarPath;
+    }
+    public isHuman() {
+        return false;
+    }
+}
 
+class HumanPlayer extends Player {
+    public isHuman(): boolean {
+        return true;
+    }
+}
+
+class BotPlayer extends Player {
+    public makeGuess(): number {
+        return Math.floor(Math.random() * 20) + 1;
     }
 }

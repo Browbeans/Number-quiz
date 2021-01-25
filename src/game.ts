@@ -7,6 +7,7 @@ class Game {
         this.ui = new UI();
         this.gameLeader = new GameLeader();
         document.getElementById("app")?.appendChild(this.ui.getElement());
+        this.startGame();
     }
 
     public updateUI() {
@@ -18,4 +19,16 @@ class Game {
             appDiv.appendChild(this.ui.getElement());
         }
     }
+
+    private startGame() {
+        this.gameLeader.startGame();
+        appState.addPlayer(new HumanPlayer('You'));
+        appState.addPlayer(new BotPlayer('Drunk Denise'));
+        appState.addPlayer(new BotPlayer('Smart Steve'));
+    }
+
+    public handleUserGuess(value: number) {
+        this.gameLeader.handleUserGuess(value);
+    }
+    
 }
