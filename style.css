@@ -80,3 +80,18 @@ body {
     justify-content: center;
     font-size: 0.8rem;
 }
+
+.restartButton {
+    background-color: #ffce82;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    font-weight: 800;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    letter-spacing: 0.1rem;
+}
