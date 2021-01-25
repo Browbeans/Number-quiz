@@ -28,8 +28,6 @@ class StartPage extends Component {
         super();
         this.element.appendChild(new Header('center').getElement());
         this.element.appendChild(new IntroductionHeadline().getElement());
-        this.element.appendChild(new IntroductionText().getElement());
-        this.element.appendChild(new InstructionHeadline().getElement());
         this.element.appendChild(new InstructionText().getElement());
         this.element.appendChild(new Paragraph().getElement()); 
         this.element.appendChild(new Input().getElement()); 
@@ -181,47 +179,18 @@ class IntroductionHeadline extends Component {
         this.element.innerHTML = 'Instructions';
     }
 }
-
-class IntroductionText extends Component {
-    protected element: HTMLElement;
-    
-    constructor() {
-        const line1 = 'Hi and welcome to Crack The Number!';
-        const line2 = 'To play the game you will need to log in and write your name. ';
-        const line3 = 'You will now face your competitors: Drunk Denise and Smart Steve. ';
-        const line4 = 'Denise has been hitting the bottle hard in lockdown while Smart Steve has been playing ';
-        const line5 = 'chess and reading a lot.';
-        super();
-        this.element = document.createElement('p');
-        this.element.classList.add('instructions');
-        this.element.innerHTML =  line1 + ' ' + line2 + ' ' + line3 + ' ' + line4 + ' ' + line5;
-
-    }
-}
-
-class InstructionHeadline extends Component {
-    protected element: HTMLElement;
-    
-    constructor() {
-        super();
-        this.element = document.createElement('h4');
-        this.element.classList.add('instructions');
-        this.element.innerHTML = 'So, how to play?';
-
-    }
-}
-
 class InstructionText extends Component {
     protected element: HTMLParagraphElement;
 
     constructor() {
-        const line1 = 'The game leader asks you to guess a number between 1 and 20. You have got 5 seconds to ';
-        const line2 = 'write it down in the text box. You will then get a ‘higher’ or ‘lower’ answer. Drunk Denise and ';
-        const line3 = 'Smart Steve will also guess. The first person that guesses the correct number wins! ';
+        const line1 = 'Hi and welcome to Crack the Number! You will guess a number from 1 to 20. ';
+        const line2 = 'When you’ve made your guess, the game leader will tell you if the secret number is higher or ';
+        const line3 = 'lower than your guess. You’ve got 5 seconds to guess, after 5 seconds the turn goes to ';
+        const line4 = 'Drunk Denise and thereafter Mean Mike. Good luck!';
         super();
         this.element = document.createElement('p');
         this.element.classList.add('instructions');
-        this.element.innerHTML =  line1 + ' ' + line2 + ' ' + line3;
+        this.element.innerHTML =  line1 + ' ' + line2 + ' ' + line3 + ' ' + line4;
     }
 }
 
