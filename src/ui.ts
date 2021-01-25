@@ -15,8 +15,6 @@ class UI extends Component {
     constructor() {
         super();
         this.element.appendChild(appState.currentPage.getElement());
-        //this.element.appendChild(new StartPage().getElement());
-        //this.element.appendChild(new PlayPage().getElement());
     }
 
     public updatePage(page: Component) {
@@ -33,7 +31,6 @@ class StartPage extends Component {
         this.element.appendChild(new IntroductionText().getElement());
         this.element.appendChild(new InstructionHeadline().getElement());
         this.element.appendChild(new InstructionText().getElement());
-        // All StartPage componants here...
         this.element.appendChild(new Paragraph().getElement()); 
         this.element.appendChild(new Input().getElement()); 
         this.element.appendChild(new Button().getElement()); 
