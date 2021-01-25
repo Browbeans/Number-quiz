@@ -58,7 +58,14 @@ class EndPage extends Component {
         const winnerText = document.createElement('h2');
         winnerText.innerText = 'The winner is: ' + appState.playerGuessedName;
         this.element.appendChild(winnerText);
-
+        const restartButton = document.createElement('button')
+        this.element.appendChild(restartButton)
+        restartButton.innerText = 'Restart Game'
+        restartButton.classList.add('restartButton')
+        restartButton.addEventListener('click', () => {
+            appState.nextPage(new StartPage()); 
+            game.updateUI();
+        })
     }
 }
 
