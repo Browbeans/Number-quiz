@@ -234,6 +234,7 @@ class NumberInput extends Component {
         this.element.setAttribute('type', 'number')
         this.element.setAttribute('value', '');
         this.element.setAttribute('autofocus', 'autofocus');
+        this.element.classList.add('input-number');
     }
 }
 
