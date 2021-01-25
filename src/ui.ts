@@ -33,8 +33,7 @@ class StartPage extends Component {
         this.element.appendChild(new InstructionText().getElement());
         this.element.appendChild(new Paragraph().getElement()); 
         this.element.appendChild(new Input().getElement()); 
-        this.element.appendChild(new Button().getElement()); 
-        
+        this.element.appendChild(new Button().getElement());    
     }
 }
 
@@ -44,6 +43,7 @@ class PlayPage extends Component {
         this.element.appendChild(new Header('center').getElement());
         if (appState.isHumanPlayer()) {
             this.element.appendChild(new MiddleUser('bot').getElement());
+            this.element.appendChild(new Timer().getElement());
         } else {
             this.element.appendChild(new MiddleBot().getElement());
         }
@@ -222,6 +222,18 @@ class InstructionText extends Component {
         this.element = document.createElement('p');
         this.element.classList.add('instructions');
         this.element.innerHTML =  line1 + ' ' + line2 + ' ' + line3;
+    }
+}
+
+class Timer extends Component {
+    protected element: HTMLElement
+
+    constructor() {
+        super();
+         
+        this.element = document.createElement('p');
+        this.element.innerText = 'Test';
+        this.element.classList.add('timer-paragraph', "fixed-top");  
     }
 }
 
