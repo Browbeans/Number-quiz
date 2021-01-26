@@ -61,7 +61,7 @@ class EndPage extends Component {
         restartButton.innerText = 'Restart Game'
         restartButton.classList.add('restartButton')
         restartButton.addEventListener('click', () => {
-            appState.nextPage(new StartPage()); 
+            location.reload();
             game.updateUI();
         })
     }
@@ -134,11 +134,13 @@ class Button extends Component {
         this.element.classList.add('startButton')
         this.element.innerText = 'start quiz';
         this.element.addEventListener('click', () => {
-            appState.playerName = document.querySelector('input')?.value; 
+            let playerName = document.querySelector('input')?.value;
+            let nameList = JSON.parse(localStorage.getItem('playerNames') || '[]');
+            nameList.push(playerName);
+            localStorage.setItem('playerNames', JSON.stringify(nameList));
             appState.nextPage(new PlayPage());
             game.updateUI();
-            window.localStorage.setItem('playerName', JSON.stringify(appState.playerName));
-        });           
+        });
     }
 }
 
