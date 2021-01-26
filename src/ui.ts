@@ -232,8 +232,17 @@ class Timer extends Component {
         super();
          
         this.element = document.createElement('p');
-        this.element.innerText = 'Test';
-        this.element.classList.add('timer-paragraph', "fixed-top");  
+        let startNumber = 5;
+        this.element.innerText = JSON.stringify(startNumber);
+        this.element.classList.add('timer-paragraph', "fixed-top"); 
+        this.countDown(startNumber, this.element) 
+    }
+    public countDown(number: number, element: HTMLElement) {
+        setInterval(function() { 
+            number -= 1; 
+            element.innerText = ''
+            element.innerText = JSON.stringify(number);
+        }, 1000);
     }
 }
 
