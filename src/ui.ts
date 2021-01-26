@@ -254,9 +254,9 @@ class PlayerIcons extends Component {
         super();
         this.element.classList.add('avatars');
         const avatars = ['user-bg.png', 'dumbot.png', 'smartbot.png'];
-        const span = document.createElement('span');
-        span.innerText = appState.playerName;
-        this.element.appendChild(span);
+        // const span = document.createElement('span');
+        // span.innerText = appState.playerName;
+        // this.element.appendChild(span);
 
         for (const avatar of avatars) {
             let image = new Image(80, 100);

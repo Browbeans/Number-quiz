@@ -66,7 +66,6 @@ class AppState {
             this.highestLowerNumberGuessed = this.numberGuessed;
         } else if (this.numberGuessed > this.correctNumber && this.numberGuessed < this.lowestHighestNumberGuessed) {
             this.lowestHighestNumberGuessed = this.numberGuessed;
-        }
-         
+        }        
     }
 }
