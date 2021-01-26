@@ -34,9 +34,11 @@ class GameLeader {
         if (!nextPlayer.isHuman()) {
             const botPlayer = nextPlayer;
             appState.makeGuess(botPlayer.makeGuess());
-            appState.nextPage(new PlayPage());
-            game.updateUI();
-            await sleep(3000);
+            if (appState.numberGuessed !== appState.correctNumber) {
+                appState.nextPage(new PlayPage());
+                game.updateUI();
+                await sleep(3000);
+            }
             this.nextPlayer();
         }
     }   
