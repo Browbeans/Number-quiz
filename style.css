@@ -18,6 +18,9 @@ body {
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
+
+    padding-left: 5rem;
+    padding-right: 5rem;
     text-align: justify;
     color: white;
 }
