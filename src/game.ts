@@ -31,4 +31,7 @@ class Game {
         this.gameLeader.handleUserGuess(value);
     }
     
+    public timeOut() {
+        this.gameLeader.timeOut();
+    }
 }

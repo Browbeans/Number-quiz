@@ -232,17 +232,29 @@ class Timer extends Component {
         super();
          
         this.element = document.createElement('p');
-        let startNumber = 5;
-        this.element.innerText = JSON.stringify(startNumber);
+        this.element.innerText = JSON.stringify(5);
         this.element.classList.add('timer-paragraph', "fixed-top"); 
-        this.countDown(startNumber, this.element) 
+        this.countDown(this.element) 
     }
-    public countDown(number: number, element: HTMLElement) {
-        setInterval(function() { 
-            number -= 1; 
+    
+    public countDown(element: HTMLElement) {
+        let number = 5;
+        let interval = setInterval(function() {
+            
+            if(number > 0) {
+                number -= 1; 
+            } 
+            if(number === 0){
+                myStopFunction();
+                game.timeOut();
+            }
             element.innerText = ''
             element.innerText = JSON.stringify(number);
         }, 1000);
+        
+        function myStopFunction() {
+            clearInterval(interval);
+        }
     }
 }
 
