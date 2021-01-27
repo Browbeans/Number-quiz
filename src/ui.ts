@@ -118,7 +118,7 @@ class MiddleBot extends Component {
         numberGuessedEl.innerText = appState.numberGuessed + '\xa0';
  
         const higherLowerAnswerEl = document.createElement('h4');
-        const text = appState.numberGuessed < appState.correctNumber ? 'Higher' : 'Lower';
+        const text = appState.numberGuessed < appState.correctNumber ? '– Higher' : '– Lower';
         higherLowerAnswerEl.innerText = text;
 
         this.element.classList.add('playing-answer');
