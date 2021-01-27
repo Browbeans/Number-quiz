@@ -53,10 +53,9 @@ class EndPage extends Component {
     private playerNames: any;
     constructor() {
         super();
-        this.playerNames = JSON.parse(localStorage.getItem('playerNames') || '[]');
-        const highscoreList = document.createElement('div');
-        highscoreList.innerHTML = this.playerNames;
-        this.element.appendChild(highscoreList);
+        
+        
+        
         this.element.appendChild(new Header('center').getElement());
         const winnerText = document.createElement('h2');
         winnerText.innerText = 'The winner is: ' + appState.playerGuessedName;
@@ -69,6 +68,10 @@ class EndPage extends Component {
             location.reload();
             game.updateUI();
         })
+        this.playerNames = JSON.parse(localStorage.getItem('playerNames') || '[]');
+        const highscoreList = document.createElement('div');
+        highscoreList.innerHTML = this.playerNames;
+        this.element.appendChild(highscoreList);
     }
 }
 
