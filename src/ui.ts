@@ -238,23 +238,21 @@ class Timer extends Component {
     }
     
     public countDown(element: HTMLElement) {
+    
         let number = 5;
-        let interval = setInterval(function() {
-            
-            if(number > 0) {
-                number -= 1; 
-            } 
-            if(number === 0){
-                myStopFunction();
+        let interval = setInterval(function() {   
+            number -= 1; 
+            if(appState.currentPlayerIndex != 0){
+                clearInterval(interval);
+                game.updateUI();
+            }else if(number == 0) {
+                clearInterval(interval)
+                game.updateUI()
                 game.timeOut();
             }
             element.innerText = ''
             element.innerText = JSON.stringify(number);
         }, 1000);
-        
-        function myStopFunction() {
-            clearInterval(interval);
-        }
     }
 }
 
@@ -283,6 +281,7 @@ class SubmitInput extends Component {
         this.element.addEventListener('click', () => {
             let value = document.querySelector('input')?.value;
             game.handleUserGuess(Number(value));
+             
         })
     }
 }
