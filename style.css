@@ -18,6 +18,9 @@ body {
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
+
+    padding-left: 5rem;
+    padding-right: 5rem;
     text-align: justify;
     color: white;
 }
@@ -60,6 +63,13 @@ body {
     justify-content: center;
 }
 
+.input-number {
+    height: 3rem;
+    font-size: 2rem;
+    width: 10rem;
+    font-weight: 700;
+}
+
 .p-playing-now {
     margin-left: auto;
     margin-right: auto;
@@ -86,5 +96,19 @@ body {
     font-size: 4rem;
     margin-left: 3rem;
     margin-top: 3rem;
-    
+}  
+
+.restartButton {
+    background-color: #ffce82;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    font-weight: 800;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    letter-spacing: 0.1rem;
 }

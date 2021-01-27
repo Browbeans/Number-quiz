@@ -1,5 +1,6 @@
 // Game leader class
 class GameLeader {
+
     constructor () {
 
     }
@@ -9,11 +10,7 @@ class GameLeader {
     }
 
     public handleUserGuess(value: number) {
-        console.log(value);
         appState.makeGuess(value);
-
-        
-       
         this.nextPlayer();
     }
 
@@ -44,20 +41,16 @@ class GameLeader {
             appState.nextPage(new PlayPage());
             game.updateUI();
             await sleep(5000);
+            if (appState.numberGuessed !== appState.correctNumber) {
+                appState.nextPage(new PlayPage());
+                game.updateUI();
+                await sleep(3000);
+            }
             this.nextPlayer();
         }
-    }
-    
+    }   
 }
 
 function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-
-// function handleInput(value: any) {
-    
-//     console.log('appState.correctNumber:')
-//     console.log(appState.correctNumber)
-
-// }
-

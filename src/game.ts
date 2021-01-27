@@ -2,7 +2,7 @@
 
 class Game {
     private ui: UI;
-    private gameLeader: GameLeader
+    private gameLeader: GameLeader;
     constructor() {
         this.ui = new UI();
         this.gameLeader = new GameLeader();
@@ -23,8 +23,8 @@ class Game {
     private startGame() {
         this.gameLeader.startGame();
         appState.addPlayer(new HumanPlayer('You'));
-        appState.addPlayer(new BotPlayer('Drunk Denise'));
-        appState.addPlayer(new BotPlayer('Smart Steve'));
+        appState.addPlayer(new BotPlayerDumb('Drunk Denise'));
+        appState.addPlayer(new BotPlayerSmart('Mean Mike'));
     }
 
     public handleUserGuess(value: number) {
