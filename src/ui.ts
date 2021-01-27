@@ -50,8 +50,13 @@ class PlayPage extends Component {
 }
 
 class EndPage extends Component {
+    private playerNames: any;
     constructor() {
         super();
+        this.playerNames = JSON.parse(localStorage.getItem('playerNames') || '[]');
+        const highscoreList = document.createElement('div');
+        highscoreList.innerHTML = this.playerNames;
+        this.element.appendChild(highscoreList);
         this.element.appendChild(new Header('center').getElement());
         const winnerText = document.createElement('h2');
         winnerText.innerText = 'The winner is: ' + appState.playerGuessedName;
@@ -254,9 +259,6 @@ class PlayerIcons extends Component {
         super();
         this.element.classList.add('avatars');
         const avatars = ['user-bg.png', 'dumbot.png', 'smartbot.png'];
-        // const span = document.createElement('span');
-        // span.innerText = appState.playerName;
-        // this.element.appendChild(span);
 
         for (const avatar of avatars) {
             let image = new Image(80, 100);
