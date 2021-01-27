@@ -30,5 +30,4 @@ class Game {
     public handleUserGuess(value: number) {
         this.gameLeader.handleUserGuess(value);
     }
-    
 }

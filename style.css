@@ -91,6 +91,13 @@ body {
     font-size: 0.8rem;
 }
 
+.timer-paragraph {
+    color: white;
+    font-size: 4rem;
+    margin-left: 3rem;
+    margin-top: 3rem;
+}  
+
 .restartButton {
     background-color: #ffce82;
     text-transform: uppercase;
