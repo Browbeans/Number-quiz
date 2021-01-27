@@ -247,8 +247,8 @@ class Timer extends Component {
                 game.updateUI();
             }else if(number == 0) {
                 clearInterval(interval)
+                game.handleUserGuess(0)
                 game.updateUI()
-                game.timeOut();
             }
             element.innerText = ''
             element.innerText = JSON.stringify(number);

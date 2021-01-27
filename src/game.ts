@@ -30,8 +30,4 @@ class Game {
     public handleUserGuess(value: number) {
         this.gameLeader.handleUserGuess(value);
     }
-    
-    public timeOut() {
-        this.gameLeader.timeOut();
-    }
 }
