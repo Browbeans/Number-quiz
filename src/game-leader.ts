@@ -14,6 +14,10 @@ class GameLeader {
         this.nextPlayer();
     }
 
+    public timeOut() {
+        this.nextPlayer();
+    }
+
     private async nextPlayer() {
 
         if (appState.numberGuessed === appState.correctNumber) {
@@ -28,12 +32,13 @@ class GameLeader {
         game.updateUI();
         
         if (appState.getLastPlayer().isHuman()) {
-            await sleep(3000);
+            await sleep(5000);
         }
 
         if (!nextPlayer.isHuman()) {
             const botPlayer = nextPlayer;
             appState.makeGuess(botPlayer.makeGuess());
+            await sleep(3000);
             if (appState.numberGuessed !== appState.correctNumber) {
                 appState.nextPage(new PlayPage());
                 game.updateUI();
