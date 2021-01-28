@@ -230,6 +230,8 @@ class Timer extends Component {
                 clearInterval(interval)
                 game.handleUserGuess(0)
                 game.updateUI()
+            } else if(appState.currentPage instanceof EndPage) {
+                clearInterval(interval);
             }
             element.innerText = ''
             element.innerText = JSON.stringify(number);
