@@ -11,6 +11,7 @@ class GameLeader {
 
     public handleUserGuess(value: number) {
         appState.makeGuess(value);
+        appState.addGuessToPlayer();
         this.nextPlayer();
     }
 

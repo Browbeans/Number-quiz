@@ -20,6 +20,7 @@ class AppState {
     public win: boolean;
     public highestLowerNumberGuessed: number;
     public lowestHighestNumberGuessed: number;
+    public playerGuesses: number;
 
     constructor() {
         this.players = [];
@@ -31,6 +32,7 @@ class AppState {
         this.win = false;
         this.highestLowerNumberGuessed = 0;
         this.lowestHighestNumberGuessed = 20;
+        this.playerGuesses = 0; 
     }
 
     public nextPage(page: Component) {
@@ -67,5 +69,14 @@ class AppState {
         } else if (this.numberGuessed > this.correctNumber && this.numberGuessed < this.lowestHighestNumberGuessed) {
             this.lowestHighestNumberGuessed = this.numberGuessed;
         }        
+    }
+
+    public addGuessToPlayer() {
+        this.playerGuesses += 1; 
+        return this.playerGuesses
+    }
+
+    public playerGuess() {
+        return this.playerGuesses
     }
 }

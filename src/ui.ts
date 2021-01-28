@@ -57,6 +57,10 @@ class EndPage extends Component {
         winnerText.classList.add('winner-text');
         winnerText.innerText = 'The winner is: ' + appState.playerGuessedName + '!';
         this.element.appendChild(winnerText);
+        const playerGuess = document.createElement('p')
+        playerGuess.innerText = 'Finished with' + ' ' + JSON.stringify(appState.playerGuess()) + ' ' + 'guesses'
+        playerGuess.classList.add('guess-text')
+        this.element.appendChild(playerGuess)
         const restartButton = document.createElement('button')
         this.element.appendChild(restartButton)
         restartButton.innerText = 'Restart Game'
@@ -65,6 +69,7 @@ class EndPage extends Component {
             location.reload();
             game.updateUI();
         })
+        
     }
 }
 
