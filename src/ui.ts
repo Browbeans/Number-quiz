@@ -290,15 +290,13 @@ class PlayerIcons extends Component {
     constructor() {
         super();
         this.element.classList.add('avatars');
-        const avatars = ['user-bg.png', 'dumbot.png', 'smartbot.png'];
-        // const span = document.createElement('span');
-        // span.innerText = appState.playerName;
-        // this.element.appendChild(span);
 
-        for (const avatar of avatars) {
-            let image = new Image(80, 100);
-            image.src = 'assets/' + avatar;
-            this.element.appendChild(image);
+        for (const player of appState.players) {
+            if (appState.getCurrentPlayer() === player) {
+                this.element.appendChild(player.imgPlaying);
+            } else {
+                this.element.appendChild(player.imgNotPlaying);
+            }
         }
     }
 }
