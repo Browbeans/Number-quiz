@@ -54,7 +54,8 @@ class EndPage extends Component {
         super();
         this.element.appendChild(new Header('center').getElement());
         const winnerText = document.createElement('h2');
-        winnerText.innerText = 'The winner is: ' + appState.playerGuessedName;
+        winnerText.classList.add('winner-text');
+        winnerText.innerText = 'The winner is: ' + appState.playerGuessedName + '!';
         this.element.appendChild(winnerText);
         const restartButton = document.createElement('button')
         this.element.appendChild(restartButton)
@@ -109,16 +110,18 @@ class MiddleUser extends Component {
 class MiddleBot extends Component {
     constructor() {
         super();
-        const nameEl = document.createElement('span');
-        nameEl.innerText = appState.playerGuessedName + ' ';
+        const nameEl = document.createElement('h4');
+        nameEl.innerText = appState.playerGuessedName + '\xa0';
 
-        const numberGuessedEl = document.createElement('span');
-        numberGuessedEl.innerText = appState.numberGuessed + ' ';
-
-        const higherLowerAnswerEl = document.createElement('span');
-        const text = appState.numberGuessed < appState.correctNumber ? 'Higher' : 'Lower';
+        const numberGuessedEl = document.createElement('h4');
+        numberGuessedEl.classList.add('bold-h4');
+        numberGuessedEl.innerText = appState.numberGuessed + '\xa0';
+ 
+        const higherLowerAnswerEl = document.createElement('h4');
+        const text = appState.numberGuessed < appState.correctNumber ? '– Higher' : '– Lower';
         higherLowerAnswerEl.innerText = text;
 
+        this.element.classList.add('playing-answer');
         this.element.appendChild(nameEl);
         this.element.appendChild(numberGuessedEl);
         this.element.appendChild(higherLowerAnswerEl);
