@@ -55,8 +55,6 @@ class EndPage extends Component {
     constructor() {
         super();
 
-
-
         this.element.appendChild(new Header('center').getElement());
         const winnerText = document.createElement('h2');
         winnerText.innerText = 'The winner is: ' + appState.playerGuessedName;
@@ -85,7 +83,6 @@ class EndPage extends Component {
         for(let i = 0; i < sortable.length; i++){
             highscoreList.innerHTML = JSON.stringify(sortable);
             this.element.appendChild(highscoreList);
-
         }
     }
 }
