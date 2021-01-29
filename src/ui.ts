@@ -89,7 +89,6 @@ class Logo extends Component {
         super();
         this.element = new Image(200, 200);
         this.element.src = 'assets/logo.png';
-
     }
 }
 
@@ -139,7 +138,7 @@ class Button extends Component {
     constructor() {
         super();
         this.element = document.createElement('button'); 
-        this.element.classList.add('startButton')
+        this.element.classList.add('startButton', 'fade-in')
         this.element.innerText = 'start quiz';
         this.element.addEventListener('click', () => {
             let playerName = document.querySelector('input')?.value;
@@ -160,7 +159,7 @@ class Input extends Component {
         super(); 
         this.element = document.createElement('input');
         this.element.setAttribute('type', 'text')
-        this.element.classList.add('inputName'); 
+        this.element.classList.add('inputName', 'fade-in'); 
     }
 }
 class Paragraph extends Component {
@@ -169,7 +168,7 @@ class Paragraph extends Component {
     constructor() {
         super(); 
         this.element = document.createElement('p'); 
-        this.element.classList.add('para')
+        this.element.classList.add('para', 'fade-in')
         this.element.innerText = 'Enter your name:'; 
     }
 }
@@ -192,7 +191,7 @@ class IntroductionHeadline extends Component {
     constructor() {
         super();
         this.element = document.createElement('h1');
-        this.element.classList.add('instructions'); 
+        this.element.classList.add('instructions', 'fade-in'); 
         this.element.innerHTML = 'Instructions';
     }
 }
@@ -206,7 +205,7 @@ class InstructionText extends Component {
         const line4 = 'Drunk Denise and thereafter Mean Mike. Good luck!';
         super();
         this.element = document.createElement('p');
-        this.element.classList.add('instructions');
+        this.element.classList.add('instructions', 'fade-in');
         this.element.innerHTML =  line1 + ' ' + line2 + ' ' + line3 + ' ' + line4;
     }
 }
