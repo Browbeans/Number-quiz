@@ -130,3 +130,8 @@ body {
     display: flex;
     justify-content: center;
 }
+.guess-text {
+    margin: 3rem auto;
+    display: flex;
+    justify-content: center;
+}
