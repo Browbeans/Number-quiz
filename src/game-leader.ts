@@ -1,6 +1,7 @@
 // Game leader class
 class GameLeader {
 
+
     constructor () {
 
     }
@@ -14,11 +15,13 @@ class GameLeader {
         this.nextPlayer();
     }
 
-    private async nextPlayer() {
-
+    public async nextPlayer() {
+        
+        
         if (appState.numberGuessed === appState.correctNumber) {
             appState.nextPage(new EndPage());
             game.updateUI();
+            appState.updateHighscore(appState.getCurrentPlayer());
             return;
         }
 

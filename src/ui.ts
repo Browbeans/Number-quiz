@@ -29,16 +29,16 @@ class StartPage extends Component {
         this.element.appendChild(new Header('center').getElement());
         this.element.appendChild(new IntroductionHeadline().getElement());
         this.element.appendChild(new InstructionText().getElement());
-        this.element.appendChild(new Paragraph().getElement()); 
-        this.element.appendChild(new Input().getElement()); 
-        this.element.appendChild(new Button().getElement()); 
-        
+        this.element.appendChild(new Paragraph().getElement());
+        this.element.appendChild(new Input().getElement());
+        this.element.appendChild(new Button().getElement());
+
     }
 }
 
 class PlayPage extends Component {
-    constructor () {
-        super(); 
+    constructor() {
+        super();
         this.element.appendChild(new Header('center').getElement());
         if (appState.isHumanPlayer()) {
             this.element.appendChild(new MiddleUser('bot').getElement());
@@ -51,11 +51,12 @@ class PlayPage extends Component {
 
 class EndPage extends Component {
     private playerNames: any;
+
     constructor() {
         super();
-        
-        
-        
+
+
+
         this.element.appendChild(new Header('center').getElement());
         const winnerText = document.createElement('h2');
         winnerText.innerText = 'The winner is: ' + appState.playerGuessedName;
@@ -68,12 +69,34 @@ class EndPage extends Component {
             location.reload();
             game.updateUI();
         })
-        this.playerNames = JSON.parse(localStorage.getItem('playerNames') || '[]');
         const highscoreList = document.createElement('div');
+        this.playerNames = localStorage.getItem('highscore') || '{}';
         highscoreList.innerHTML = this.playerNames;
         this.element.appendChild(highscoreList);
+
+
+        // let sortable = [];
+        // for (let names of this.playerNames) {
+        //     sortable.push([names, this.playerNames[names]]);
+        // }
+
+        // sortable.sort(function (a, b) {
+        //     return a[1] - b[1];
+        // });
+        let entries = Object.entries(this.playerNames);
+    
+        let sorted = entries.sort((a: any, b: any) => a[1] - b[1]);
+        console.log(entries);
+
+
     }
 }
+
+// function sort(playerNames: any) {
+//     let entries = Object.entries(playerNames).sort((b: any, a: any) => b[1] - a[1]);
+//     console.log(entries)
+
+// }
 
 class Header extends Component {
     constructor(position: string) {
@@ -96,18 +119,18 @@ class Logo extends Component {
 }
 
 class MiddleUser extends Component {
-    
+
     constructor(position: string) {
-        super(); 
+        super();
         const numberQuestion = new NumberQuestion().getElement();
         numberQuestion.classList.add('input-' + position);
         this.element.appendChild(numberQuestion);
 
-        const numberInput = new NumberInput().getElement(); 
+        const numberInput = new NumberInput().getElement();
         numberInput.classList.add('input-' + position);
         this.element.appendChild(numberInput);
-        
-        const submitInput = new SubmitInput().getElement(); 
+
+        const submitInput = new SubmitInput().getElement();
         submitInput.classList.add('input-' + position);
         this.element.appendChild(submitInput);
 
@@ -134,11 +157,11 @@ class MiddleBot extends Component {
 }
 
 class Button extends Component {
-    protected element: HTMLButtonElement; 
+    protected element: HTMLButtonElement;
 
     constructor() {
         super();
-        this.element = document.createElement('button'); 
+        this.element = document.createElement('button');
         this.element.classList.add('startButton')
         this.element.innerText = 'start quiz';
         this.element.addEventListener('click', () => {
@@ -154,32 +177,32 @@ class Button extends Component {
 
 
 class Input extends Component {
-    protected element: HTMLInputElement | HTMLElement; 
+    protected element: HTMLInputElement | HTMLElement;
 
     constructor() {
-        super(); 
+        super();
         this.element = document.createElement('input');
         this.element.setAttribute('type', 'text')
-        this.element.classList.add('inputName'); 
+        this.element.classList.add('inputName');
     }
 }
 class Paragraph extends Component {
-    protected element: HTMLParagraphElement; 
+    protected element: HTMLParagraphElement;
 
     constructor() {
-        super(); 
-        this.element = document.createElement('p'); 
+        super();
+        this.element = document.createElement('p');
         this.element.classList.add('para')
-        this.element.innerText = 'Enter your name:'; 
+        this.element.innerText = 'Enter your name:';
     }
 }
 
 
 class NumberQuestion extends Component {
     protected element: HTMLElement;
-    
+
     constructor() {
-        super(); 
+        super();
         this.element = document.createElement('P');
         this.element.innerHTML = 'Pick a number between 1 and 20';
     }
@@ -188,11 +211,11 @@ class NumberQuestion extends Component {
 
 class IntroductionHeadline extends Component {
     protected element: HTMLParagraphElement;
-    
+
     constructor() {
         super();
         this.element = document.createElement('h1');
-        this.element.classList.add('instructions'); 
+        this.element.classList.add('instructions');
         this.element.innerHTML = 'Instructions';
     }
 }
@@ -207,7 +230,7 @@ class InstructionText extends Component {
         super();
         this.element = document.createElement('p');
         this.element.classList.add('instructions');
-        this.element.innerHTML =  line1 + ' ' + line2 + ' ' + line3 + ' ' + line4;
+        this.element.innerHTML = line1 + ' ' + line2 + ' ' + line3 + ' ' + line4;
     }
 }
 
@@ -215,7 +238,7 @@ class NumberInput extends Component {
     protected element: HTMLElement
 
     constructor() {
-        super(); 
+        super();
         this.element = document.createElement('INPUT')
         this.element.setAttribute('type', 'number')
         this.element.setAttribute('value', '');
@@ -228,7 +251,7 @@ class SubmitInput extends Component {
     protected element: HTMLElement
 
     constructor() {
-        super(); 
+        super();
         this.element = document.createElement('BUTTON')
         this.element.setAttribute('type', 'submit')
         this.element.setAttribute('value', 'Submit');
@@ -243,9 +266,9 @@ class SubmitInput extends Component {
 
 class Footer extends Component {
     protected element: HTMLElement;
-    
+
     constructor() {
-        super(); 
+        super();
         this.element = document.createElement('div');
         const userIcon = new PlayerIcons().getElement();
 
