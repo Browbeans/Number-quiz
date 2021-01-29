@@ -38,7 +38,7 @@ class StartPage extends Component {
 class PlayPage extends Component {
     constructor () {
         super(); 
-        this.element.appendChild(new Header('center').getElement());
+        this.element.appendChild(new Header('left').getElement());
         if (appState.isHumanPlayer()) {
             this.element.appendChild(new MiddleUser('bot').getElement());
             this.element.appendChild(new Timer().getElement());
@@ -79,6 +79,9 @@ class Header extends Component {
         const logo = new Logo().getElement();
         logo.classList.add('logo-' + position);
         this.element.appendChild(logo);
+        if(window.innerWidth < 500){
+            this.element.classList.add('fixed-top') 
+        }
     }
 }
 
@@ -182,6 +185,7 @@ class NumberQuestion extends Component {
         super(); 
         this.element = document.createElement('P');
         this.element.innerHTML = 'Pick a number between 1 and 20';
+        this.element.classList.add('number-para')
     }
 }
 
@@ -266,7 +270,7 @@ class SubmitInput extends Component {
         this.element.setAttribute('type', 'submit')
         this.element.setAttribute('value', 'Submit');
         this.element.innerText = 'Submit'
-        this.element.classList.add('startButton');
+        this.element.classList.add('input-button');
         this.element.addEventListener('click', () => {
             let value = document.querySelector('input')?.value;
             game.handleUserGuess(Number(value));
