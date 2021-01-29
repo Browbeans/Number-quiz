@@ -21,6 +21,7 @@ class AppState {
     public highestLowerNumberGuessed: number;
     public lowestHighestNumberGuessed: number;
     public playerGuesses: number;
+    public highscore: Record<string, number>;
 
     constructor() {
         this.players = [];
@@ -32,7 +33,8 @@ class AppState {
         this.win = false;
         this.highestLowerNumberGuessed = 0;
         this.lowestHighestNumberGuessed = 20;
-        this.playerGuesses = 0; 
+        this.playerGuesses = 0;
+        this.highscore = {};
     }
 
     public nextPage(page: Component) {
@@ -78,5 +80,13 @@ class AppState {
 
     public playerGuess() {
         return this.playerGuesses
+    }
+
+    public updateHighscore(player: Player) {
+        const lsHighscore = JSON.parse(localStorage.getItem('highscore') || '{}');
+        lsHighscore[player.name] = lsHighscore[player.name] ? lsHighscore[player.name] + 1 : 1;
+        
+        localStorage.setItem('highscore', JSON.stringify(lsHighscore));
+
     }
 }

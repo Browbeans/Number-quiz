@@ -24,6 +24,7 @@ class GameLeader {
         if (appState.numberGuessed === appState.correctNumber) {
             appState.nextPage(new EndPage());
             game.updateUI();
+            appState.updateHighscore(appState.getCurrentPlayer());
             return;
         }
 
