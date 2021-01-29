@@ -70,25 +70,23 @@ class EndPage extends Component {
             game.updateUI();
         })
         const highscoreList = document.createElement('div');
-        this.playerNames = localStorage.getItem('highscore') || '{}';
-        highscoreList.innerHTML = this.playerNames;
-        this.element.appendChild(highscoreList);
+        this.playerNames = localStorage.getItem('highscore') || '';
+        
+        let hej = JSON.parse(localStorage.getItem('highscore') || '');
+        let sortable = [];
+        for (let names in hej) {
+            sortable.push([names, hej[names]]);
+        }
+        console.log(sortable)
+        sortable.sort(function (a, b) {
+            return b[1] - a[1];
+        });
+        
+        for(let i = 0; i < sortable.length; i++){
+            highscoreList.innerHTML = JSON.stringify(sortable);
+            this.element.appendChild(highscoreList);
 
-
-        // let sortable = [];
-        // for (let names of this.playerNames) {
-        //     sortable.push([names, this.playerNames[names]]);
-        // }
-
-        // sortable.sort(function (a, b) {
-        //     return a[1] - b[1];
-        // });
-        let entries = Object.entries(this.playerNames);
-    
-        let sorted = entries.sort((a: any, b: any) => a[1] - b[1]);
-        console.log(entries);
-
-
+        }
     }
 }
 

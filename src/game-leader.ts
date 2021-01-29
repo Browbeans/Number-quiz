@@ -7,7 +7,7 @@ class GameLeader {
     }
 
     startGame() {
-        appState.correctNumber = Math.floor(Math.random() * 20) + 1;
+        appState.correctNumber = Math.floor(Math.random() * 3) + 1;
     }
 
     public handleUserGuess(value: number) {
