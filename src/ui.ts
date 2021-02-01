@@ -196,7 +196,7 @@ class IntroductionHeadline extends Component {
     constructor() {
         super();
         this.element = document.createElement('h1');
-        this.element.classList.add('instructions'); 
+        this.element.classList.add('h1-instructions'); 
         this.element.innerHTML = 'Instructions';
     }
 }

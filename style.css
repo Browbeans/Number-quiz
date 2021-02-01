@@ -32,6 +32,18 @@ body {
     color: white;
 }
 
+.h1-instructions {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    
+    padding-left: 5rem;
+    padding-right: 5rem;
+    text-align: justify;
+    color: white;
+}
+
 .para {
     display: flex;
     justify-content: center;
@@ -188,22 +200,3 @@ body {
     justify-content: center;
 }
 
-
-/* Media queries */
-
-@media (max-width: 550px) {
-    body {
-        margin: 0;
-        width: 100%;
-    }
-
-    .logo-left {
-        position: fixed;
-        left: 75%;
-        top: 1rem;
-        right: 0;
-        width: 7rem;
-        height: 7rem;
-        margin: 0;
-    } 
-}
