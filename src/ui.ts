@@ -67,31 +67,23 @@ class EndPage extends Component {
             location.reload();
             game.updateUI();
         })
-        const highscoreList = document.createElement('div');
-        this.playerNames = localStorage.getItem('highscore') || '';
+        const highscoreEl = document.createElement('div');
+        const highscore = JSON.parse(localStorage.getItem('highscore') || '{}');
         
-        let hej = JSON.parse(localStorage.getItem('highscore') || '');
-        let sortable = [];
-        for (let names in hej) {
-            sortable.push([names, hej[names]]);
+        let entries = Object.entries(highscore);
+        const sorted = entries.sort((a: any, b: any) => b[1] - a[1]);
+
+        let name;
+        let score;
+        for ([name, score] of sorted) {
+            const pEl = document.createElement('p');
+            pEl.innerText = name + ' ' + score;
+            highscoreEl.appendChild(pEl);
         }
-        console.log(sortable)
-        sortable.sort(function (a, b) {
-            return b[1] - a[1];
-        });
-        
-        for(let i = 0; i < sortable.length; i++){
-            highscoreList.innerHTML = JSON.stringify(sortable);
-            this.element.appendChild(highscoreList);
-        }
+        this.element.appendChild(highscoreEl);
     }
 }
 
-// function sort(playerNames: any) {
-//     let entries = Object.entries(playerNames).sort((b: any, a: any) => b[1] - a[1]);
-//     console.log(entries)
-
-// }
 
 class Header extends Component {
     constructor(position: string) {
