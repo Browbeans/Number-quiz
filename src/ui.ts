@@ -42,6 +42,7 @@ class PlayPage extends Component {
         this.element.appendChild(new Header('center').getElement());
         if (appState.isHumanPlayer()) {
             this.element.appendChild(new MiddleUser('bot').getElement());
+            this.element.appendChild(new Timer().getElement());
         } else {
             this.element.appendChild(new MiddleBot().getElement());
         }
@@ -57,8 +58,13 @@ class EndPage extends Component {
 
         this.element.appendChild(new Header('center').getElement());
         const winnerText = document.createElement('h2');
-        winnerText.innerText = 'The winner is: ' + appState.playerGuessedName;
+        winnerText.classList.add('winner-text');
+        winnerText.innerText = 'The winner is: ' + appState.playerGuessedName + '!';
         this.element.appendChild(winnerText);
+        const playerGuess = document.createElement('p')
+        playerGuess.innerText = 'Finished with' + ' ' + JSON.stringify(appState.playerGuess()) + ' ' + 'guesses'
+        playerGuess.classList.add('guess-text')
+        this.element.appendChild(playerGuess)
         const restartButton = document.createElement('button')
         this.element.appendChild(restartButton)
         restartButton.innerText = 'Restart Game'
@@ -127,16 +133,18 @@ class MiddleUser extends Component {
 class MiddleBot extends Component {
     constructor() {
         super();
-        const nameEl = document.createElement('span');
-        nameEl.innerText = appState.playerGuessedName + ' ';
+        const nameEl = document.createElement('h4');
+        nameEl.innerText = appState.playerGuessedName + '\xa0';
 
-        const numberGuessedEl = document.createElement('span');
-        numberGuessedEl.innerText = appState.numberGuessed + ' ';
-
-        const higherLowerAnswerEl = document.createElement('span');
-        const text = appState.numberGuessed < appState.correctNumber ? 'Higher' : 'Lower';
+        const numberGuessedEl = document.createElement('h4');
+        numberGuessedEl.classList.add('bold-h4');
+        numberGuessedEl.innerText = appState.numberGuessed + '\xa0';
+ 
+        const higherLowerAnswerEl = document.createElement('h4');
+        const text = appState.numberGuessed < appState.correctNumber ? '– Higher' : '– Lower';
         higherLowerAnswerEl.innerText = text;
 
+        this.element.classList.add('playing-answer');
         this.element.appendChild(nameEl);
         this.element.appendChild(numberGuessedEl);
         this.element.appendChild(higherLowerAnswerEl);
@@ -221,6 +229,39 @@ class InstructionText extends Component {
     }
 }
 
+class Timer extends Component {
+    protected element: HTMLElement
+
+    constructor() {
+        super();
+         
+        this.element = document.createElement('p');
+        this.element.innerText = JSON.stringify(5);
+        this.element.classList.add('timer-paragraph', "fixed-top"); 
+        this.countDown(this.element) 
+    }
+    
+    public countDown(element: HTMLElement) {
+    
+        let number = 5;
+        let interval = setInterval(function() {   
+            number -= 1; 
+            if(appState.currentPlayerIndex != 0){
+                clearInterval(interval);
+                game.updateUI();
+            }else if(number == 0) {
+                clearInterval(interval)
+                game.handleUserGuess(0)
+                game.updateUI()
+            } else if(appState.currentPage instanceof EndPage) {
+                clearInterval(interval);
+            }
+            element.innerText = ''
+            element.innerText = JSON.stringify(number);
+        }, 1000);
+    }
+}
+
 class NumberInput extends Component {
     protected element: HTMLElement
 
@@ -247,6 +288,7 @@ class SubmitInput extends Component {
         this.element.addEventListener('click', () => {
             let value = document.querySelector('input')?.value;
             game.handleUserGuess(Number(value));
+             
         })
     }
 }

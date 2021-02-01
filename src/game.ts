@@ -22,13 +22,12 @@ class Game {
 
     private startGame() {
         this.gameLeader.startGame();
-        appState.addPlayer(new HumanPlayer('You'));
-        appState.addPlayer(new BotPlayerDumb('Drunk Denise'));
-        appState.addPlayer(new BotPlayerSmart('Mean Mike'));
+        appState.addPlayer(new HumanPlayer());
+        appState.addPlayer(new BotPlayerDumb());
+        appState.addPlayer(new BotPlayerSmart());
     }
 
     public handleUserGuess(value: number) {
         this.gameLeader.handleUserGuess(value);
     }
-    
 }
