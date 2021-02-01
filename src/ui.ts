@@ -179,6 +179,7 @@ class Input extends Component {
         this.element = document.createElement('input');
         this.element.setAttribute('type', 'text')
         this.element.classList.add('inputName');
+        this.element.setAttribute('autofocus', 'autofocus');
     }
 }
 class Paragraph extends Component {
