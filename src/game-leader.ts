@@ -1,12 +1,13 @@
 // Game leader class
 class GameLeader {
 
+
     constructor () {
 
     }
 
     startGame() {
-        appState.correctNumber = Math.floor(Math.random() * 20) + 1;
+        appState.correctNumber = Math.floor(Math.random() * 3) + 1;
     }
 
     public handleUserGuess(value: number) {
@@ -19,11 +20,13 @@ class GameLeader {
         this.nextPlayer();
     }
 
-    private async nextPlayer() {
-
+    public async nextPlayer() {
+        
+        
         if (appState.numberGuessed === appState.correctNumber) {
             appState.nextPage(new EndPage());
             game.updateUI();
+            appState.updateHighscore(appState.getCurrentPlayer());
             return;
         }
 
@@ -33,17 +36,17 @@ class GameLeader {
         game.updateUI();
         
         if (appState.getLastPlayer().isHuman()) {
-            await sleep(5000);
+            await sleep(2000);
         }
 
         if (!nextPlayer.isHuman()) {
             const botPlayer = nextPlayer;
             appState.makeGuess(botPlayer.makeGuess());
-            await sleep(3000);
+            await sleep(2000);
             if (appState.numberGuessed !== appState.correctNumber) {
                 appState.nextPage(new PlayPage());
                 game.updateUI();
-                await sleep(3000);
+                await sleep(2000);
             }
             this.nextPlayer();
         }
