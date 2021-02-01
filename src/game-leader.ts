@@ -1,12 +1,13 @@
 // Game leader class
 class GameLeader {
 
+
     constructor () {
 
     }
 
     startGame() {
-        appState.correctNumber = Math.floor(Math.random() * 20) + 1;
+        appState.correctNumber = Math.floor(Math.random() * 3) + 1;
     }
 
     public handleUserGuess(value: number) {
@@ -19,8 +20,9 @@ class GameLeader {
         this.nextPlayer();
     }
 
-    private async nextPlayer() {
-
+    public async nextPlayer() {
+        
+        
         if (appState.numberGuessed === appState.correctNumber) {
             appState.nextPage(new EndPage());
             game.updateUI();
