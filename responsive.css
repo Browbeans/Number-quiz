@@ -1,0 +1,130 @@
+@media (max-width: 550px) {
+    body {
+        margin: 0;
+        width: 100%;
+    }
+
+    .logo-left {
+        position: fixed;
+        left: 65%;
+        top: 1rem;
+        right: 0;
+        width: 7rem;
+        height: 7rem;
+        margin: 0;
+    }
+    
+    .instructions {
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        top: 55%;
+        right: 0;
+        margin: 0;
+        color: white;
+    }
+    .h1-instructions {
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        top: 50%;
+        right: 0;
+        margin: 0;
+        color: white;
+    }
+    
+    .instructions h1{
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        top: 10%;
+        right: 0;
+        margin: 0;
+        color: white;
+    }
+
+    .inputName {
+        display: flex;
+        font-weight: bold;
+        position: fixed;
+        justify-content: center;
+        left: 23%;
+        top: 38%;
+    }
+
+    .para {
+        display: flex;
+        font-weight: bold;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 32%;
+    }
+    
+    .startButton {
+        background-color: #ffce82;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: none;
+        font-weight: 800;
+        display: flex;
+        justify-content: center;
+        padding: 0.5rem;
+        letter-spacing: 0.1rem;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 43%;
+    }
+
+    .number-para {
+        font-size: 1.3rem;
+    }
+
+    .winner-text {
+        display: flex;
+        font-weight: bold;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 40%;
+    }
+
+    .guess-text {
+        display: flex;
+        font-weight: bold;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 45%;
+    }
+
+    .restartButton {
+        display: flex;
+        font-weight: bold;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 60%;
+    }
+}
+
+@media (max-width: 450px) {
+    .instructions {
+        top: 65%;
+        width: 100%;
+        font-size: 1rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .h1-instructions {
+        top: 60%;
+    }
+}
