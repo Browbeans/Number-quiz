@@ -205,6 +205,21 @@ body {
     -webkit-animation: fadeIn ease 3s;
 }
 
+.highscoreHeadline {
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+}
+
+.highscore-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: large;
+}
+
 /*Keyframes*/
 @keyframes fadeIn {
     0% {opacity:0;}

@@ -32,7 +32,6 @@ class StartPage extends Component {
         this.element.appendChild(new Paragraph().getElement());
         this.element.appendChild(new Input().getElement());
         this.element.appendChild(new Button().getElement());
-
     }
 }
 
@@ -65,6 +64,8 @@ class EndPage extends Component {
         playerGuess.innerText = 'Finished with' + ' ' + JSON.stringify(appState.playerGuess()) + ' ' + 'guesses'
         playerGuess.classList.add('guess-text')
         this.element.appendChild(playerGuess)
+
+        
         const restartButton = document.createElement('button')
         this.element.appendChild(restartButton)
         restartButton.innerText = 'Restart Game'
@@ -73,20 +74,28 @@ class EndPage extends Component {
             location.reload();
             game.updateUI();
         })
+        const highscoreHeadline = document.createElement('h4');
+        this.element.appendChild(highscoreHeadline);
+        highscoreHeadline.classList.add('highscoreHeadline');
+        highscoreHeadline.innerHTML = 'Highscore:';
+        
         const highscoreEl = document.createElement('div');
+        highscoreEl.classList.add('highscore-list');
         const highscore = JSON.parse(localStorage.getItem('highscore') || '{}');
+
         
         let entries = Object.entries(highscore);
         const sorted = entries.sort((a: any, b: any) => b[1] - a[1]);
-
+        
         let name;
         let score;
         for ([name, score] of sorted) {
             const pEl = document.createElement('p');
-            pEl.innerText = name + ' ' + score;
+            pEl.innerText = name + ' ' + score + ' ' + 'wins';
             highscoreEl.appendChild(pEl);
         }
         this.element.appendChild(highscoreEl);
+
     }
 }
 
