@@ -36,7 +36,7 @@ class GameLeader {
         game.updateUI();
         
         if (appState.getLastPlayer().isHuman()) {
-            await sleep(2000);
+            await sleep(1000);
         }
 
         if (!nextPlayer.isHuman()) {

@@ -74,6 +74,7 @@ class EndPage extends Component {
             game.updateUI();
         })
         const highscoreEl = document.createElement('div');
+        highscoreEl.classList.add('highscore-list');
         const highscore = JSON.parse(localStorage.getItem('highscore') || '{}');
         
         let entries = Object.entries(highscore);
