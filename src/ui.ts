@@ -29,9 +29,10 @@ class StartPage extends Component {
         this.element.appendChild(new Header('center').getElement());
         this.element.appendChild(new IntroductionHeadline().getElement());
         this.element.appendChild(new InstructionText().getElement());
-        this.element.appendChild(new Paragraph().getElement()); 
-        this.element.appendChild(new Input().getElement()); 
-        this.element.appendChild(new Button().getElement());    
+        this.element.appendChild(new Paragraph().getElement());
+        this.element.appendChild(new Input().getElement());
+        this.element.appendChild(new Button().getElement());
+
     }
 }
 
@@ -50,8 +51,11 @@ class PlayPage extends Component {
 }
 
 class EndPage extends Component {
+    private playerNames: any;
+
     constructor() {
         super();
+
         this.element.appendChild(new Header('center').getElement());
         const winnerText = document.createElement('h2');
         winnerText.classList.add('winner-text');
@@ -69,9 +73,23 @@ class EndPage extends Component {
             location.reload();
             game.updateUI();
         })
+        const highscoreEl = document.createElement('div');
+        const highscore = JSON.parse(localStorage.getItem('highscore') || '{}');
         
+        let entries = Object.entries(highscore);
+        const sorted = entries.sort((a: any, b: any) => b[1] - a[1]);
+
+        let name;
+        let score;
+        for ([name, score] of sorted) {
+            const pEl = document.createElement('p');
+            pEl.innerText = name + ' ' + score;
+            highscoreEl.appendChild(pEl);
+        }
+        this.element.appendChild(highscoreEl);
     }
 }
+
 
 class Header extends Component {
     constructor(position: string) {
@@ -92,23 +110,22 @@ class Logo extends Component {
         super();
         this.element = new Image(200, 200);
         this.element.src = 'assets/logo.png';
-
     }
 }
 
 class MiddleUser extends Component {
-    
+
     constructor(position: string) {
-        super(); 
+        super();
         const numberQuestion = new NumberQuestion().getElement();
         numberQuestion.classList.add('input-' + position);
         this.element.appendChild(numberQuestion);
 
-        const numberInput = new NumberInput().getElement(); 
+        const numberInput = new NumberInput().getElement();
         numberInput.classList.add('input-' + position);
         this.element.appendChild(numberInput);
-        
-        const submitInput = new SubmitInput().getElement(); 
+
+        const submitInput = new SubmitInput().getElement();
         submitInput.classList.add('input-' + position);
         this.element.appendChild(submitInput);
 
@@ -137,18 +154,19 @@ class MiddleBot extends Component {
 }
 
 class Button extends Component {
-    protected element: HTMLButtonElement; 
+    protected element: HTMLButtonElement;
 
     constructor() {
         super();
         this.element = document.createElement('button'); 
-        this.element.classList.add('startButton')
+        this.element.classList.add('startButton', 'fade-in')
         this.element.innerText = 'start quiz';
         this.element.addEventListener('click', () => {
             let playerName = document.querySelector('input')?.value;
             let nameList = JSON.parse(localStorage.getItem('playerNames') || '[]');
             nameList.push(playerName);
             localStorage.setItem('playerNames', JSON.stringify(nameList));
+            appState.players[0].name = playerName;
             appState.nextPage(new PlayPage());
             game.updateUI();
         });
@@ -157,22 +175,22 @@ class Button extends Component {
 
 
 class Input extends Component {
-    protected element: HTMLInputElement | HTMLElement; 
+    protected element: HTMLInputElement | HTMLElement;
 
     constructor() {
-        super(); 
+        super();
         this.element = document.createElement('input');
         this.element.setAttribute('type', 'text')
-        this.element.classList.add('inputName'); 
+        this.element.classList.add('inputName', 'fade-in'); 
     }
 }
 class Paragraph extends Component {
-    protected element: HTMLParagraphElement; 
+    protected element: HTMLParagraphElement;
 
     constructor() {
         super(); 
         this.element = document.createElement('p'); 
-        this.element.classList.add('para')
+        this.element.classList.add('para', 'fade-in')
         this.element.innerText = 'Enter your name:'; 
     }
 }
@@ -180,9 +198,9 @@ class Paragraph extends Component {
 
 class NumberQuestion extends Component {
     protected element: HTMLElement;
-    
+
     constructor() {
-        super(); 
+        super();
         this.element = document.createElement('P');
         this.element.innerHTML = 'Pick a number between 1 and 20';
         this.element.classList.add('number-para')
@@ -192,12 +210,11 @@ class NumberQuestion extends Component {
 
 class IntroductionHeadline extends Component {
     protected element: HTMLParagraphElement;
-    
+
     constructor() {
         super();
         this.element = document.createElement('h1');
-        this.element.classList.add('h1-instructions'); 
-        this.element.innerHTML = 'Instructions';
+        this.element.classList.add('h1-instructions', 'fade-in');  
     }
 }
 class InstructionText extends Component {
@@ -210,7 +227,7 @@ class InstructionText extends Component {
         const line4 = 'Drunk Denise and thereafter Mean Mike. Good luck!';
         super();
         this.element = document.createElement('p');
-        this.element.classList.add('instructions');
+        this.element.classList.add('instructions', 'fade-in');
         this.element.innerHTML =  line1 + ' ' + line2 + ' ' + line3 + ' ' + line4;
     }
 }
@@ -252,7 +269,7 @@ class NumberInput extends Component {
     protected element: HTMLElement
 
     constructor() {
-        super(); 
+        super();
         this.element = document.createElement('INPUT')
         this.element.setAttribute('type', 'number')
         this.element.setAttribute('value', '');
@@ -265,7 +282,7 @@ class SubmitInput extends Component {
     protected element: HTMLElement
 
     constructor() {
-        super(); 
+        super();
         this.element = document.createElement('BUTTON')
         this.element.setAttribute('type', 'submit')
         this.element.setAttribute('value', 'Submit');
@@ -281,9 +298,9 @@ class SubmitInput extends Component {
 
 class Footer extends Component {
     protected element: HTMLElement;
-    
+
     constructor() {
-        super(); 
+        super();
         this.element = document.createElement('div');
         const userIcon = new PlayerIcons().getElement();
 
@@ -299,15 +316,13 @@ class PlayerIcons extends Component {
     constructor() {
         super();
         this.element.classList.add('avatars');
-        const avatars = ['user-bg.png', 'dumbot.png', 'smartbot.png'];
-        // const span = document.createElement('span');
-        // span.innerText = appState.playerName;
-        // this.element.appendChild(span);
 
-        for (const avatar of avatars) {
-            let image = new Image(80, 100);
-            image.src = 'assets/' + avatar;
-            this.element.appendChild(image);
+        for (const player of appState.players) {
+            if (appState.getCurrentPlayer() === player) {
+                this.element.appendChild(player.imgPlaying);
+            } else {
+                this.element.appendChild(player.imgNotPlaying);
+            }
         }
     }
 }
