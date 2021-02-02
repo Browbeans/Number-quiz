@@ -163,6 +163,7 @@ class Button extends Component {
             let nameList = JSON.parse(localStorage.getItem('playerNames') || '[]');
             nameList.push(playerName);
             localStorage.setItem('playerNames', JSON.stringify(nameList));
+            appState.players[0].name = playerName;
             appState.nextPage(new PlayPage());
             game.updateUI();
         });

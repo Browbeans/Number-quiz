@@ -7,7 +7,7 @@ class GameLeader {
     }
 
     startGame() {
-        appState.correctNumber = Math.floor(Math.random() * 3) + 1;
+        appState.correctNumber = Math.floor(Math.random() * 20) + 1;
     }
 
     public handleUserGuess(value: number) {
@@ -24,9 +24,9 @@ class GameLeader {
         
         
         if (appState.numberGuessed === appState.correctNumber) {
+            appState.updateHighscore(appState.getCurrentPlayer());
             appState.nextPage(new EndPage());
             game.updateUI();
-            appState.updateHighscore(appState.getCurrentPlayer());
             return;
         }
 
