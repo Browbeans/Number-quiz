@@ -52,7 +52,7 @@
         position: fixed;
         justify-content: center;
         left: 23%;
-        top: 38%;
+        top: 42%;
     }
 
     .para {
@@ -62,7 +62,7 @@
         position: fixed;
         left: 0;
         right: 0;
-        top: 32%;
+        top: 38%;
     }
     
     .startButton {
@@ -78,7 +78,7 @@
         position: fixed;
         left: 0;
         right: 0;
-        top: 43%;
+        top: 50%;
     }
 
     .number-para {
@@ -130,7 +130,7 @@
     }
     .highscoreHeadline {
         position: fixed;
-        top: 70%; 
+        top: 65%; 
         padding-left: 5rem;
         margin-left: auto;
         margin-right: auto;
