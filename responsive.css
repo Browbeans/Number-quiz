@@ -136,6 +136,7 @@
         display: flex;
         justify-content: center;
         padding-top: 5rem;
+        padding-left: 2rem;
        
     }
         
@@ -150,6 +151,7 @@
         margin-top: 1rem;
         font-weight: bold;
         font-size: large;
+        padding-left: 2rem;
        
     }
 }
