@@ -4,6 +4,11 @@
         width: 100%;
     }
 
+    .logo-center {
+        width: 10rem;
+        height: 10rem;
+    }
+
     .logo-left {
         position: fixed;
         left: 65%;
@@ -62,7 +67,7 @@
         position: fixed;
         left: 0;
         right: 0;
-        top: 38%;
+        top: 33%;
     }
     
     .startButton {
