@@ -130,10 +130,12 @@
     }
     .highscoreHeadline {
         position: fixed;
-        top: 60%; 
+        top: 70%; 
         padding-left: 2rem;
         margin-left: auto;
         margin-right: auto;
+        text-align:left;
+
     }
         
     .highscore-list {
@@ -142,6 +144,7 @@
         margin-left: auto;
         margin-right: auto;
         padding-left: 2rem;
+        text-align:left;
        
     }
 }
