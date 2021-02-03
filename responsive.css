@@ -130,24 +130,26 @@
     }
     .highscoreHeadline {
         position: fixed;
-        top: 65%; 
+        top: 55%; 
+        margin-left: auto;
+        margin-right: auto;
         display: flex;
         justify-content: center;
         padding-top: 5rem;
-        margin-left: auto;
-        margin-right: auto;
+       
     }
         
     .highscore-list {
         position: fixed;
-        top: 80%; 
+        top: 80%;
+        margin-left: auto;
+        margin-right: auto; 
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-top: 1rem;
         font-weight: bold;
         font-size: large;
-        margin-left: auto;
-        margin-right: auto;
+       
     }
 }
