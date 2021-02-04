@@ -1,10 +1,4 @@
-// Game leader class
 class GameLeader {
-
-
-    constructor () {
-
-    }
 
     startGame() {
         appState.correctNumber = Math.floor(Math.random() * 20) + 1;
@@ -22,7 +16,6 @@ class GameLeader {
 
     public async nextPlayer() {
         
-        
         if (appState.numberGuessed === appState.correctNumber) {
             appState.updateHighscore(appState.getCurrentPlayer());
             appState.nextPage(new EndPage());
@@ -31,7 +24,6 @@ class GameLeader {
         }
 
         const nextPlayer = appState.nextPlayer();
-
         appState.nextPage(new PlayPage());
         game.updateUI();
         

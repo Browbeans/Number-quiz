@@ -1,5 +1,3 @@
-//game controller class, avgör vem som vinner etc..
-
 class Game {
     private ui: UI;
     private gameLeader: GameLeader;

@@ -8,8 +8,6 @@ function init() {
     appState = new AppState();
     game = new Game();
 }
-
-//All data som uppdateras i spelet kan hållas i denna.
 class AppState {
     public players: Player[];
     public currentPlayerIndex: number;
@@ -81,10 +79,10 @@ class AppState {
 
     public addGuessToPlayer() {
         this.playerGuesses += 1; 
-        return this.playerGuesses
+        return this.playerGuesses;
     }
 
     public playerGuess() {
-        return this.playerGuesses
+        return this.playerGuesses;
     }
 }
