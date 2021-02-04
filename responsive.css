@@ -4,6 +4,11 @@
         width: 100%;
     }
 
+    .logo-center {
+        width: 10rem;
+        height: 10rem;
+    }
+
     .logo-left {
         position: fixed;
         left: 65%;
@@ -52,7 +57,7 @@
         position: fixed;
         justify-content: center;
         left: 23%;
-        top: 38%;
+        top: 42%;
     }
 
     .para {
@@ -62,7 +67,7 @@
         position: fixed;
         left: 0;
         right: 0;
-        top: 32%;
+        top: 33%;
     }
     
     .startButton {
@@ -78,7 +83,7 @@
         position: fixed;
         left: 0;
         right: 0;
-        top: 43%;
+        top: 50%;
     }
 
     .number-para {
@@ -126,5 +131,25 @@
     }
     .h1-instructions {
         top: 60%;
+
+    }
+    .highscoreHeadline {
+        position: fixed;
+        top: 65%; 
+        padding-left: 5rem;
+        margin-left: auto;
+        margin-right: auto;
+        text-align:left;
+
+    }
+        
+    .highscore-list {
+        position: fixed;
+        top: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 5rem;
+        text-align:left;
+       
     }
 }
