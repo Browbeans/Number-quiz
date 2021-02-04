@@ -9,9 +9,8 @@ class Component {
         return this.element;
     }
 }
-
-
 class UI extends Component {
+   
     constructor() {
         super();
         this.element.appendChild(appState.currentPage.getElement());
@@ -22,8 +21,8 @@ class UI extends Component {
         this.element.appendChild(page.getElement());
     }
 }
-
 class StartPage extends Component {
+    
     constructor() {
         super();
         this.element.appendChild(new Header('center').getElement());
@@ -34,8 +33,8 @@ class StartPage extends Component {
         this.element.appendChild(new Button().getElement());
     }
 }
-
 class PlayPage extends Component {
+    
     constructor () {
         super(); 
         this.element.appendChild(new Header('left').getElement());
@@ -50,7 +49,6 @@ class PlayPage extends Component {
 }
 
 class EndPage extends Component {
-    private playerNames: any;
 
     constructor() {
         super();
@@ -61,19 +59,19 @@ class EndPage extends Component {
         winnerText.innerText = 'The winner is: ' + appState.playerGuessedName + '!';
         this.element.appendChild(winnerText);
         const playerGuess = document.createElement('p')
-        playerGuess.innerText = 'Finished with' + ' ' + JSON.stringify(appState.playerGuess()) + ' ' + 'guesses'
-        playerGuess.classList.add('guess-text')
-        this.element.appendChild(playerGuess)
+        playerGuess.innerText = 'Finished with' + ' ' + JSON.stringify(appState.playerGuess()) + ' ' + 'guesses';
+        playerGuess.classList.add('guess-text');
+        this.element.appendChild(playerGuess);
 
-        
-        const restartButton = document.createElement('button')
-        this.element.appendChild(restartButton)
-        restartButton.innerText = 'Restart Game'
-        restartButton.classList.add('restartButton')
+        const restartButton = document.createElement('button');
+        this.element.appendChild(restartButton);
+        restartButton.innerText = 'Restart Game';
+        restartButton.classList.add('restartButton');
         restartButton.addEventListener('click', () => {
             location.reload();
             game.updateUI();
-        })
+        });
+
         const highscoreHeadline = document.createElement('h4');
         this.element.appendChild(highscoreHeadline);
         highscoreHeadline.classList.add('highscoreHeadline');
@@ -83,7 +81,6 @@ class EndPage extends Component {
         highscoreEl.classList.add('highscore-list');
         const highscore = JSON.parse(localStorage.getItem('highscore') || '{}');
 
-        
         let entries = Object.entries(highscore);
         const sorted = entries.sort((a: any, b: any) => b[1] - a[1]);
         
@@ -95,23 +92,20 @@ class EndPage extends Component {
             highscoreEl.appendChild(pEl);
         }
         this.element.appendChild(highscoreEl);
-
     }
 }
-
-
 class Header extends Component {
+    
     constructor(position: string) {
         super();
         const logo = new Logo().getElement();
         logo.classList.add('logo-' + position);
         this.element.appendChild(logo);
         if(window.innerWidth < 500){
-            this.element.classList.add('fixed-top') 
+            this.element.classList.add('fixed-top');
         }
     }
 }
-
 class Logo extends Component {
     protected element: HTMLImageElement;
 
@@ -121,7 +115,6 @@ class Logo extends Component {
         this.element.src = 'assets/logo.png';
     }
 }
-
 class MiddleUser extends Component {
 
     constructor(position: string) {
@@ -137,11 +130,10 @@ class MiddleUser extends Component {
         const submitInput = new SubmitInput().getElement();
         submitInput.classList.add('input-' + position);
         this.element.appendChild(submitInput);
-
     }
 }
-
 class MiddleBot extends Component {
+    
     constructor() {
         super();
         const nameEl = document.createElement('h4');
@@ -161,14 +153,13 @@ class MiddleBot extends Component {
         this.element.appendChild(higherLowerAnswerEl);
     }
 }
-
 class Button extends Component {
     protected element: HTMLButtonElement;
 
     constructor() {
         super();
         this.element = document.createElement('button'); 
-        this.element.classList.add('startButton', 'fade-in')
+        this.element.classList.add('startButton', 'fade-in');
         this.element.innerText = 'start quiz';
         this.element.addEventListener('click', () => {
             let playerName = document.querySelector('input')?.value;
@@ -181,15 +172,13 @@ class Button extends Component {
         });
     }
 }
-
-
 class Input extends Component {
     protected element: HTMLInputElement | HTMLElement;
 
     constructor() {
         super();
         this.element = document.createElement('input');
-        this.element.setAttribute('type', 'text')
+        this.element.setAttribute('type', 'text');
         this.element.classList.add('inputName', 'fade-in'); 
         this.element.setAttribute('autofocus', 'autofocus');
     }
@@ -200,12 +189,10 @@ class Paragraph extends Component {
     constructor() {
         super(); 
         this.element = document.createElement('p'); 
-        this.element.classList.add('para', 'fade-in')
+        this.element.classList.add('para', 'fade-in');
         this.element.innerText = 'Enter your name:'; 
     }
 }
-
-
 class NumberQuestion extends Component {
     protected element: HTMLElement;
 
@@ -213,11 +200,9 @@ class NumberQuestion extends Component {
         super();
         this.element = document.createElement('P');
         this.element.innerHTML = 'Pick a number between 1 and 20';
-        this.element.classList.add('number-para')
+        this.element.classList.add('number-para');
     }
 }
-
-
 class IntroductionHeadline extends Component {
     protected element: HTMLParagraphElement;
 
@@ -241,17 +226,15 @@ class InstructionText extends Component {
         this.element.innerHTML =  line1 + ' ' + line2 + ' ' + line3 + ' ' + line4;
     }
 }
-
 class Timer extends Component {
-    protected element: HTMLElement
+    protected element: HTMLElement;
 
     constructor() {
         super();
-         
         this.element = document.createElement('p');
         this.element.innerText = JSON.stringify(5);
         this.element.classList.add('timer-paragraph', "fixed-top"); 
-        this.countDown(this.element) 
+        this.countDown(this.element);
     }
     
     public countDown(element: HTMLElement) {
@@ -263,49 +246,45 @@ class Timer extends Component {
                 clearInterval(interval);
                 game.updateUI();
             }else if(number == 0) {
-                clearInterval(interval)
-                game.handleUserGuess(0)
-                game.updateUI()
+                clearInterval(interval);
+                game.handleUserGuess(0);
+                game.updateUI();
             } else if(appState.currentPage instanceof EndPage) {
                 clearInterval(interval);
             }
-            element.innerText = ''
+            element.innerText = '';
             element.innerText = JSON.stringify(number);
         }, 1000);
     }
 }
-
 class NumberInput extends Component {
-    protected element: HTMLElement
+    protected element: HTMLElement;
 
     constructor() {
         super();
-        this.element = document.createElement('INPUT')
-        this.element.setAttribute('type', 'number')
+        this.element = document.createElement('INPUT');
+        this.element.setAttribute('type', 'number');
         this.element.setAttribute('value', '');
         this.element.setAttribute('autofocus', 'autofocus');
         this.element.classList.add('input-number');
     }
 }
-
 class SubmitInput extends Component {
-    protected element: HTMLElement
+    protected element: HTMLElement;
 
     constructor() {
         super();
-        this.element = document.createElement('BUTTON')
-        this.element.setAttribute('type', 'submit')
+        this.element = document.createElement('BUTTON');
+        this.element.setAttribute('type', 'submit');
         this.element.setAttribute('value', 'Submit');
-        this.element.innerText = 'Submit'
+        this.element.innerText = 'Submit';
         this.element.classList.add('input-button');
         this.element.addEventListener('click', () => {
             let value = document.querySelector('input')?.value;
-            game.handleUserGuess(Number(value));
-             
+            game.handleUserGuess(Number(value)); 
         })
     }
 }
-
 class Footer extends Component {
     protected element: HTMLElement;
 
@@ -315,14 +294,14 @@ class Footer extends Component {
         const userIcon = new PlayerIcons().getElement();
 
         const playNow = document.createElement('p');
-        playNow.classList.add('p-playing-now')
+        playNow.classList.add('p-playing-now');
         playNow.innerText = 'Playing Now:';
         this.element.appendChild(playNow);
         this.element.appendChild(userIcon);
     }
 }
-
 class PlayerIcons extends Component {
+    
     constructor() {
         super();
         this.element.classList.add('avatars');
